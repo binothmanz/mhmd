@@ -78,6 +78,35 @@
             gap: 8px;
         }
         
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .lang-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .lang-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .lang-btn.active {
+            background-color: white;
+            color: var(--primary-color);
+        }
+        
         nav ul {
             display: flex;
             list-style: none;
@@ -114,22 +143,6 @@
             color: white;
             padding: 5rem 0;
             text-align: center;
-            position: relative;
-        }
-        
-        .supervisor-hero {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
-            color: var(--primary-color);
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: var(--shadow);
         }
         
         .hero h2 {
@@ -180,26 +193,6 @@
             background-color: var(--secondary-color);
         }
         
-        .supervisor-section {
-            background-color: var(--light-color);
-            padding: 2rem;
-            border-radius: 10px;
-            margin: 2rem auto;
-            max-width: 800px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            border-right: 5px solid var(--secondary-color);
-        }
-        
-        .supervisor-section h3 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
         .services-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -215,7 +208,6 @@
             transition: var(--transition);
             display: flex;
             flex-direction: column;
-            position: relative;
         }
         
         .service-card:hover {
@@ -391,14 +383,6 @@
             color: var(--secondary-color);
         }
         
-        .supervisor-footer {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 10px;
-            border-right: 3px solid var(--accent-color);
-        }
-        
         .copyright {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 1.5rem;
@@ -406,22 +390,18 @@
         }
         
         /* Responsive Design */
-        @media (max-width: 992px) {
-            .supervisor-hero {
-                position: static;
-                margin-bottom: 20px;
-                justify-content: center;
-            }
-        }
-        
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
                 gap: 15px;
             }
             
+            .logo {
+                flex-direction: column;
+                text-align: center;
+            }
+            
             .supervisor-badge {
-                order: 3;
                 margin-top: 10px;
             }
             
@@ -446,26 +426,68 @@
             .footer-content {
                 flex-direction: column;
             }
-            
-            .supervisor-section {
-                padding: 1.5rem;
-            }
+        }
+        
+        /* Language specific styles */
+        body[dir="ltr"] {
+            text-align: left;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body[dir="ltr"] .section-title::after {
+            right: auto;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        body[dir="ltr"] .service-tag {
+            align-self: flex-start;
+        }
+        
+        body[dir="ltr"] .service-content h3,
+        body[dir="ltr"] .service-content p {
+            text-align: left;
+        }
+        
+        body[dir="ltr"] .step {
+            text-align: left;
+        }
+        
+        body[dir="ltr"] .feature-box {
+            text-align: left;
+        }
+        
+        body[dir="ltr"] .feature-box i {
+            float: left;
+            margin-right: 15px;
+            margin-bottom: 0;
         }
     </style>
 </head>
-<body>
+<body dir="rtl" lang="ar">
     <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo">
                 <i class="fas fa-graduation-cap"></i>
                 <div>
-                    <h1>تعليم الإنجليزية والترجمة</h1>
+                    <h1 id="site-title">تعليم الإنجليزية والترجمة</h1>
                     <div class="supervisor-badge">
                         <i class="fas fa-user-tie"></i>
-                        <span>المشرف العام: أ/محمد عثمان</span>
+                        <span id="supervisor-text" data-ar="المشرف العام: أ/محمد عثمان - معلم لغة إنجليزية ومترجم" data-en="Supervisor: Mr. Mohammed Othman - English Teacher and Translator">
+                            المشرف العام: أ/محمد عثمان - معلم لغة إنجليزية ومترجم
+                        </span>
                     </div>
                 </div>
+            </div>
+            
+            <div class="language-switcher">
+                <button class="lang-btn active" id="arabicBtn">
+                    <i class="fas fa-language"></i> عربي
+                </button>
+                <button class="lang-btn" id="englishBtn">
+                    <i class="fas fa-language"></i> English
+                </button>
             </div>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -474,11 +496,10 @@
             
             <nav id="mainNav">
                 <ul>
-                    <li><a href="#home">الرئيسية</a></li>
-                    <li><a href="#services">الخدمات</a></li>
-                    <li><a href="#features">المميزات</a></li>
-                    <li><a href="#about">عن المشرف</a></li>
-                    <li><a href="#contact">اتصل بنا</a></li>
+                    <li><a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                    <li><a href="#services" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
+                    <li><a href="#features" data-ar="المميزات" data-en="Features">المميزات</a></li>
+                    <li><a href="#contact" data-ar="اتصل بنا" data-en="Contact">اتصل بنا</a></li>
                 </ul>
             </nav>
         </div>
@@ -486,39 +507,11 @@
     
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="supervisor-hero">
-            <i class="fas fa-crown"></i>
-            <span>المشرف العام: أ/محمد عثمان - معلم لغة إنجليزية ومترجم</span>
-        </div>
-        
         <div class="container">
-            <h2>خدمات تعليمية وترجمة احترافية</h2>
-            <p>نقدم لك خدمات تعليمية متكاملة أونلاين: دروس خصوصية لجميع المستويات، حلول تمارين بدقة وشرح مفصل، تصميم عروض PowerPoint احترافية، إعداد ملخصات دراسية جاهزة، إعداد سيرة ذاتية مميزة، كتابة Cover Letter احترافية للتقديم على الوظائف، إعداد مراسلات ورسائل إنجليزية رسمية، تنفيذ برامج تعليمية حسب الطلب.</p>
-            <div class="language-badge">
+            <h2 id="hero-title">خدمات تعليمية وترجمة احترافية</h2>
+            <p id="hero-description">نقدم لك خدمات تعليمية متكاملة أونلاين: دروس خصوصية لجميع المستويات، حلول تمارين بدقة وشرح مفصل، تصميم عروض PowerPoint احترافية، إعداد ملخصات دراسية جاهزة، إعداد سيرة ذاتية مميزة، كتابة Cover Letter احترافية للتقديم على الوظائف، إعداد مراسلات ورسائل إنجليزية رسمية، تنفيذ برامج تعليمية حسب الطلب.</p>
+            <div class="language-badge" id="language-notice">
                 <i class="fas fa-language"></i> جميع الخدمات متاحة باللغتين العربية والإنجليزية
-            </div>
-        </div>
-    </section>
-    
-    <!-- About Supervisor Section -->
-    <section id="about">
-        <div class="container">
-            <div class="supervisor-section">
-                <h3><i class="fas fa-user-tie"></i> المشرف العام</h3>
-                <h2>أ/محمد عثمان</h2>
-                <p><strong>معلم لغة إنجليزية ومترجم محترف</strong></p>
-                <p>مدرس لغة إنجليزية ذو خبرة واسعة في مجال التعليم والترجمة، حاصل على شهادات متخصصة في تدريس اللغة الإنجليزية كلغة أجنبية (TEFL) والترجمة الاحترافية. يقدم خدمات تعليمية وترجمة عالية الجودة تلبي احتياجات الطلاب والمهنيين على حد سواء.</p>
-                <div style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-                    <span style="background-color: var(--secondary-color); color: white; padding: 5px 15px; border-radius: 20px;">
-                        <i class="fas fa-award"></i> خبرة 10+ سنوات
-                    </span>
-                    <span style="background-color: var(--accent-color); color: white; padding: 5px 15px; border-radius: 20px;">
-                        <i class="fas fa-graduation-cap"></i> معتمد TEFL
-                    </span>
-                    <span style="background-color: var(--success-color); color: white; padding: 5px 15px; border-radius: 20px;">
-                        <i class="fas fa-language"></i> ترجمة احترافية
-                    </span>
-                </div>
             </div>
         </div>
     </section>
@@ -526,7 +519,7 @@
     <!-- Services Section -->
     <section id="services">
         <div class="container">
-            <h2 class="section-title">خدماتنا التعليمية</h2>
+            <h2 class="section-title" id="services-title">خدماتنا التعليمية</h2>
             <div class="services-container">
                 <!-- Service Card 1 -->
                 <div class="service-card">
@@ -534,11 +527,11 @@
                         <i class="fas fa-chalkboard-teacher"></i>
                     </div>
                     <div class="service-content">
-                        <span class="service-tag">مجاني - تجريبي</span>
-                        <h3>دروس خصوصية أونلاين</h3>
-                        <p>تعلم في وقتك وفي أي مكان. نقدم دروس خصوصية في اللغة الإنجليزية والرياضيات والفيزياء لجميع المستويات.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('دروس خصوصية أونلاين')">
-                            <i class="fab fa-whatsapp"></i> اشتراك في الخدمة
+                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                        <h3 data-ar="دروس خصوصية أونلاين" data-en="Private Online Lessons">دروس خصوصية أونلاين</h3>
+                        <p data-ar="تعلم في وقتك وفي أي مكان. نقدم دروس خصوصية في اللغة الإنجليزية والرياضيات والفيزياء لجميع المستويات." data-en="Learn at your own time and anywhere. We provide private lessons in English, Mathematics, and Physics for all levels.">تعلم في وقتك وفي أي مكان. نقدم دروس خصوصية في اللغة الإنجليزية والرياضيات والفيزياء لجميع المستويات.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('دروس خصوصية أونلاين', 'Private Online Lessons')">
+                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
                         </button>
                     </div>
                 </div>
@@ -549,11 +542,11 @@
                         <i class="fas fa-tasks"></i>
                     </div>
                     <div class="service-content">
-                        <span class="service-tag">مجاني - تجريبي</span>
-                        <h3>حلول تمارين</h3>
-                        <p>حلول تمارين بدقة وشرح مفصل في اللغة الإنجليزية والرياضيات والفيزياء وغيرها من المواد.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('حلول تمارين')">
-                            <i class="fab fa-whatsapp"></i> اشتراك في الخدمة
+                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                        <h3 data-ar="حلول تمارين" data-en="Exercise Solutions">حلول تمارين</h3>
+                        <p data-ar="حلول تمارين بدقة وشرح مفصل في اللغة الإنجليزية والرياضيات والفيزياء وغيرها من المواد." data-en="Accurate exercise solutions with detailed explanations in English, Mathematics, Physics, and other subjects.">حلول تمارين بدقة وشرح مفصل في اللغة الإنجليزية والرياضيات والفيزياء وغيرها من المواد.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('حلول تمارين', 'Exercise Solutions')">
+                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
                         </button>
                     </div>
                 </div>
@@ -564,11 +557,11 @@
                         <i class="fas fa-file-powerpoint"></i>
                     </div>
                     <div class="service-content">
-                        <span class="service-tag">مجاني - تجريبي</span>
-                        <h3>تصميم عروض بوربوينت</h3>
-                        <p>تصميم عروض PowerPoint احترافية وجذابة لتقديم عروضك ومشاريعك بشكل مميز.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('تصميم عروض بوربوينت')">
-                            <i class="fab fa-whatsapp"></i> اشتراك في الخدمة
+                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                        <h3 data-ar="تصميم عروض بوربوينت" data-en="PowerPoint Presentation Design">تصميم عروض بوربوينت</h3>
+                        <p data-ar="تصميم عروض PowerPoint احترافية وجذابة لتقديم عروضك ومشاريعك بشكل مميز." data-en="Design professional and attractive PowerPoint presentations to showcase your projects and presentations.">تصميم عروض PowerPoint احترافية وجذابة لتقديم عروضك ومشاريعك بشكل مميز.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('تصميم عروض بوربوينت', 'PowerPoint Presentation Design')">
+                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
                         </button>
                     </div>
                 </div>
@@ -579,11 +572,11 @@
                         <i class="fas fa-file-alt"></i>
                     </div>
                     <div class="service-content">
-                        <span class="service-tag">مجاني - تجريبي</span>
-                        <h3>إعداد سيرة ذاتية ورسالة تغطية</h3>
-                        <p>إعداد سيرة ذاتية مميزة وكتابة Cover Letter احترافية للتقديم على الوظائف باللغتين العربية والإنجليزية.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('إعداد سيرة ذاتية ورسالة تغطية')">
-                            <i class="fab fa-whatsapp"></i> اشتراك في الخدمة
+                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                        <h3 data-ar="إعداد سيرة ذاتية ورسالة تغطية" data-en="CV and Cover Letter Preparation">إعداد سيرة ذاتية ورسالة تغطية</h3>
+                        <p data-ar="إعداد سيرة ذاتية مميزة وكتابة Cover Letter احترافية للتقديم على الوظائف باللغتين العربية والإنجليزية." data-en="Prepare distinctive CVs and professional Cover Letters for job applications in both Arabic and English.">إعداد سيرة ذاتية مميزة وكتابة Cover Letter احترافية للتقديم على الوظائف باللغتين العربية والإنجليزية.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('إعداد سيرة ذاتية ورسالة تغطية', 'CV and Cover Letter Preparation')">
+                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
                         </button>
                     </div>
                 </div>
@@ -594,11 +587,11 @@
                         <i class="fas fa-mail-bulk"></i>
                     </div>
                     <div class="service-content">
-                        <span class="service-tag">مجاني - تجريبي</span>
-                        <h3>إعداد مراسلات إنجليزية</h3>
-                        <p>إعداد مراسلات ورسائل إنجليزية رسمية احترافية للشركات والمؤسسات والأغراض الشخصية.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('إعداد مراسلات إنجليزية')">
-                            <i class="fab fa-whatsapp"></i> اشتراك في الخدمة
+                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                        <h3 data-ar="إعداد مراسلات إنجليزية" data-en="English Correspondence Preparation">إعداد مراسلات إنجليزية</h3>
+                        <p data-ar="إعداد مراسلات ورسائل إنجليزية رسمية احترافية للشركات والمؤسسات والأغراض الشخصية." data-en="Prepare professional official English correspondence and letters for companies, institutions, and personal purposes.">إعداد مراسلات ورسائل إنجليزية رسمية احترافية للشركات والمؤسسات والأغراض الشخصية.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('إعداد مراسلات إنجليزية', 'English Correspondence Preparation')">
+                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
                         </button>
                     </div>
                 </div>
@@ -609,11 +602,11 @@
                         <i class="fas fa-book-open"></i>
                     </div>
                     <div class="service-content">
-                        <span class="service-tag">مجاني - تجريبي</span>
-                        <h3>إعداد ملخصات دراسية</h3>
-                        <p>إعداد ملخصات دراسية جاهزة ومبسطة في مختلف المواد لمساعدتك على الدراسة بفعالية.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('إعداد ملخصات دراسية')">
-                            <i class="fab fa-whatsapp"></i> اشتراك في الخدمة
+                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                        <h3 data-ar="إعداد ملخصات دراسية" data-en="Study Summaries Preparation">إعداد ملخصات دراسية</h3>
+                        <p data-ar="إعداد ملخصات دراسية جاهزة ومبسطة في مختلف المواد لمساعدتك على الدراسة بفعالية." data-en="Prepare ready and simplified study summaries in various subjects to help you study effectively.">إعداد ملخصات دراسية جاهزة ومبسطة في مختلف المواد لمساعدتك على الدراسة بفعالية.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('إعداد ملخصات دراسية', 'Study Summaries Preparation')">
+                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
                         </button>
                     </div>
                 </div>
@@ -624,11 +617,11 @@
                         <i class="fas fa-laptop-code"></i>
                     </div>
                     <div class="service-content">
-                        <span class="service-tag">مجاني - تجريبي</span>
-                        <h3>برامج تعليمية حسب الطلب</h3>
-                        <p>تنفيذ برامج تعليمية حسب الطلب لتلبية احتياجاتك التعليمية الخاصة.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('برامج تعليمية حسب الطلب')">
-                            <i class="fab fa-whatsapp"></i> اشتراك في الخدمة
+                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                        <h3 data-ar="برامج تعليمية حسب الطلب" data-en="Custom Educational Programs">برامج تعليمية حسب الطلب</h3>
+                        <p data-ar="تنفيذ برامج تعليمية حسب الطلب لتلبية احتياجاتك التعليمية الخاصة." data-en="Implement custom educational programs to meet your specific learning needs.">تنفيذ برامج تعليمية حسب الطلب لتلبية احتياجاتك التعليمية الخاصة.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('برامج تعليمية حسب الطلب', 'Custom Educational Programs')">
+                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
                         </button>
                     </div>
                 </div>
@@ -639,11 +632,11 @@
                         <i class="fas fa-calculator"></i>
                     </div>
                     <div class="service-content">
-                        <span class="service-tag">مجاني - تجريبي</span>
-                        <h3>دروس خصوصية رياضيات وفيزياء</h3>
-                        <p>دروس خصوصية في الرياضيات والفيزياء لجميع المراحل الدراسية بأسلوب مبسط وفعال.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('دروس خصوصية رياضيات وفيزياء')">
-                            <i class="fab fa-whatsapp"></i> اشتراك في الخدمة
+                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                        <h3 data-ar="دروس خصوصية رياضيات وفيزياء" data-en="Private Math and Physics Lessons">دروس خصوصية رياضيات وفيزياء</h3>
+                        <p data-ar="دروس خصوصية في الرياضيات والفيزياء لجميع المراحل الدراسية بأسلوب مبسط وفعال." data-en="Private lessons in Mathematics and Physics for all academic levels with a simplified and effective approach.">دروس خصوصية في الرياضيات والفيزياء لجميع المراحل الدراسية بأسلوب مبسط وفعال.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('دروس خصوصية رياضيات وفيزياء', 'Private Math and Physics Lessons')">
+                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
                         </button>
                     </div>
                 </div>
@@ -654,42 +647,42 @@
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="container">
-            <h2 class="section-title">لماذا تختار خدماتنا؟</h2>
+            <h2 class="section-title" id="features-title">لماذا تختار خدماتنا؟</h2>
             <div class="features-container">
                 <div class="feature-box">
                     <i class="fas fa-home"></i>
-                    <h3>تعلم من المنزل</h3>
-                    <p>تعلم من المنزل بسهولة وفعالية</p>
+                    <h3 data-ar="تعلم من المنزل" data-en="Learn from Home">تعلم من المنزل</h3>
+                    <p data-ar="تعلم من المنزل بسهولة وفعالية" data-en="Learn from home easily and effectively">تعلم من المنزل بسهولة وفعالية</p>
                 </div>
                 
                 <div class="feature-box">
                     <i class="fas fa-graduation-cap"></i>
-                    <h3>دورات مجانية</h3>
-                    <p>دورات تعليمية مجانية</p>
+                    <h3 data-ar="دورات مجانية" data-en="Free Courses">دورات مجانية</h3>
+                    <p data-ar="دورات تعليمية مجانية" data-en="Free educational courses">دورات تعليمية مجانية</p>
                 </div>
                 
                 <div class="feature-box">
                     <i class="fas fa-lightbulb"></i>
-                    <h3>شروحات مبسطة</h3>
-                    <p>شروحات مبسطة في مختلف المجالات</p>
+                    <h3 data-ar="شروحات مبسطة" data-en="Simplified Explanations">شروحات مبسطة</h3>
+                    <p data-ar="شروحات مبسطة في مختلف المجالات" data-en="Simplified explanations in various fields">شروحات مبسطة في مختلف المجالات</p>
                 </div>
                 
                 <div class="feature-box">
                     <i class="fas fa-download"></i>
-                    <h3>ملفات قابلة للتحميل</h3>
-                    <p>مصادر وملفات قابلة للتحميل</p>
+                    <h3 data-ar="ملفات قابلة للتحميل" data-en="Downloadable Files">ملفات قابلة للتحميل</h3>
+                    <p data-ar="مصادر وملفات قابلة للتحميل" data-en="Resources and downloadable files">مصادر وملفات قابلة للتحميل</p>
                 </div>
                 
                 <div class="feature-box">
                     <i class="fas fa-key"></i>
-                    <h3>مفتاح المستقبل</h3>
-                    <p>التعليم الذاتي هو مفتاح المستقبل</p>
+                    <h3 data-ar="مفتاح المستقبل" data-en="Key to the Future">مفتاح المستقبل</h3>
+                    <p data-ar="التعليم الذاتي هو مفتاح المستقبل" data-en="Self-education is the key to the future">التعليم الذاتي هو مفتاح المستقبل</p>
                 </div>
                 
                 <div class="feature-box">
                     <i class="fas fa-star"></i>
-                    <h3>انضم إلينا</h3>
-                    <p>انضم إلينا وابدأ رحلتك نحو التميز!</p>
+                    <h3 data-ar="انضم إلينا" data-en="Join Us">انضم إلينا</h3>
+                    <p data-ar="انضم إلينا وابدأ رحلتك نحو التميز!" data-en="Join us and start your journey towards excellence!">انضم إلينا وابدأ رحلتك نحو التميز!</p>
                 </div>
             </div>
         </div>
@@ -698,36 +691,36 @@
     <!-- Steps Section -->
     <section>
         <div class="container">
-            <h2 class="section-title">5 خطوات لتعلم أي مهارة بسرعة</h2>
+            <h2 class="section-title" id="steps-title">5 خطوات لتعلم أي مهارة بسرعة</h2>
             <div class="steps-container">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>حدد هدفك بوضوح</h3>
-                    <p>تحديد الهدف بدقة هو الخطوة الأولى نحو النجاح</p>
+                    <h3 data-ar="حدد هدفك بوضوح" data-en="Define Your Goal Clearly">حدد هدفك بوضوح</h3>
+                    <p data-ar="تحديد الهدف بدقة هو الخطوة الأولى نحو النجاح" data-en="Defining your goal precisely is the first step towards success">تحديد الهدف بدقة هو الخطوة الأولى نحو النجاح</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>خصص وقتًا يوميًا</h3>
-                    <p>خصص وقتًا يوميًا للتعلم والممارسة</p>
+                    <h3 data-ar="خصص وقتًا يوميًا" data-en="Allocate Daily Time">خصص وقتًا يوميًا</h3>
+                    <p data-ar="خصص وقتًا يوميًا للتعلم والممارسة" data-en="Allocate daily time for learning and practice">خصص وقتًا يوميًا للتعلم والممارسة</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>تعلم من مصادر متنوعة</h3>
-                    <p>استخدم مصادر تعليمية متنوعة لتعزيز فهمك</p>
+                    <h3 data-ar="تعلم من مصادر متنوعة" data-en="Learn from Various Sources">تعلم من مصادر متنوعة</h3>
+                    <p data-ar="استخدم مصادر تعليمية متنوعة لتعزيز فهمك" data-en="Use various educational sources to enhance your understanding">استخدم مصادر تعليمية متنوعة لتعزيز فهمك</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">4</div>
-                    <h3>طبق ما تتعلمه</h3>
-                    <p>طبّق ما تتعلمه مباشرة في مواقف حقيقية</p>
+                    <h3 data-ar="طبق ما تتعلمه" data-en="Apply What You Learn">طبق ما تتعلمه</h3>
+                    <p data-ar="طبّق ما تتعلمه مباشرة في مواقف حقيقية" data-en="Apply what you learn directly in real situations">طبّق ما تتعلمه مباشرة في مواقف حقيقية</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">5</div>
-                    <h3>راجع تقدمك</h3>
-                    <p>راجع تقدمك باستمرار وحسن من أدائك</p>
+                    <h3 data-ar="راجع تقدمك" data-en="Review Your Progress">راجع تقدمك</h3>
+                    <p data-ar="راجع تقدمك باستمرار وحسن من أدائك" data-en="Continuously review your progress and improve your performance">راجع تقدمك باستمرار وحسن من أدائك</p>
                 </div>
             </div>
         </div>
@@ -738,55 +731,138 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>عن الخدمات</h3>
-                    <p>نقدم خدمات تعليمية وترجمة احترافية باللغتين العربية والإنجليزية، مصممة خصيصًا لتلبية احتياجات الطلاب والمهنيين.</p>
-                    <div class="supervisor-footer">
-                        <h4><i class="fas fa-user-tie"></i> المشرف العام</h4>
-                        <p>أ/محمد عثمان</p>
-                        <p>معلم لغة إنجليزية ومترجم محترف</p>
-                    </div>
+                    <h3 id="about-services-title">عن الخدمات</h3>
+                    <p id="about-services-description">نقدم خدمات تعليمية وترجمة احترافية باللغتين العربية والإنجليزية، مصممة خصيصًا لتلبية احتياجات الطلاب والمهنيين.</p>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>خدماتنا</h3>
-                    <ul style="list-style: none;">
-                        <li><i class="fas fa-check-circle"></i> دروس خصوصية أونلاين</li>
-                        <li><i class="fas fa-check-circle"></i> حلول تمارين</li>
-                        <li><i class="fas fa-check-circle"></i> تصميم عروض بوربوينت</li>
-                        <li><i class="fas fa-check-circle"></i> إعداد سيرة ذاتية</li>
-                        <li><i class="fas fa-check-circle"></i> مراسلات تجارية</li>
-                        <li><i class="fas fa-check-circle"></i> رسالة تغطية</li>
+                    <h3 id="our-services-title">خدماتنا</h3>
+                    <ul style="list-style: none;" id="services-list">
+                        <li><i class="fas fa-check-circle"></i> <span data-ar="دروس خصوصية أونلاين" data-en="Private Online Lessons">دروس خصوصية أونلاين</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-ar="حلول تمارين" data-en="Exercise Solutions">حلول تمارين</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-ar="تصميم عروض بوربوينت" data-en="PowerPoint Design">تصميم عروض بوربوينت</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-ar="إعداد سيرة ذاتية" data-en="CV Preparation">إعداد سيرة ذاتية</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-ar="مراسلات تجارية" data-en="Business Correspondence">مراسلات تجارية</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-ar="رسالة تغطية" data-en="Cover Letter">رسالة تغطية</span></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>اتصل بنا</h3>
+                    <h3 id="contact-title">اتصل بنا</h3>
                     <div class="contact-info">
                         <p><i class="fas fa-phone"></i> +967772551220</p>
-                        <p><i class="fab fa-whatsapp"></i> واتساب: +967772551220</p>
+                        <p><i class="fab fa-whatsapp"></i> <span data-ar="واتساب" data-en="WhatsApp">واتساب</span>: +967772551220</p>
                         <p><i class="fas fa-envelope"></i> info@example.com</p>
-                        <p><i class="fas fa-map-marker-alt"></i> اليمن</p>
-                    </div>
-                    
-                    <div style="margin-top: 20px;">
-                        <h4>المشرف العام</h4>
-                        <p><strong>أ/محمد عثمان</strong></p>
-                        <p>معلم لغة إنجليزية ومترجم</p>
+                        <p><i class="fas fa-map-marker-alt"></i> <span data-ar="اليمن" data-en="Yemen">اليمن</span></p>
                     </div>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>جميع الحقوق محفوظة &copy; 2023 - خدمات تعليم الإنجليزية والترجمة | المشرف العام: أ/محمد عثمان</p>
+                <p id="copyright-text">جميع الحقوق محفوظة &copy; 2023 - خدمات تعليم الإنجليزية والترجمة</p>
             </div>
         </div>
     </footer>
     
     <script>
+        // وظيفة تبديل اللغة
+        function switchLanguage(lang) {
+            const body = document.body;
+            const html = document.documentElement;
+            
+            if (lang === 'en') {
+                body.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', 'en');
+                
+                // تحديث الأزرار
+                document.getElementById('arabicBtn').classList.remove('active');
+                document.getElementById('englishBtn').classList.add('active');
+                
+                // تحديث النصوص
+                updateTexts('en');
+            } else {
+                body.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'ar');
+                
+                // تحديث الأزرار
+                document.getElementById('arabicBtn').classList.add('active');
+                document.getElementById('englishBtn').classList.remove('active');
+                
+                // تحديث النصوص
+                updateTexts('ar');
+            }
+            
+            // حفظ اللغة المفضلة
+            localStorage.setItem('preferredLanguage', lang);
+        }
+        
+        // وظيفة تحديث النصوص
+        function updateTexts(lang) {
+            // تحديث النصوص التي لها data attributes
+            const elements = document.querySelectorAll('[data-ar], [data-en]');
+            elements.forEach(element => {
+                if (lang === 'en' && element.hasAttribute('data-en')) {
+                    element.textContent = element.getAttribute('data-en');
+                } else if (lang === 'ar' && element.hasAttribute('data-ar')) {
+                    element.textContent = element.getAttribute('data-ar');
+                }
+            });
+            
+            // تحديث النصوص الخاصة
+            const translations = {
+                ar: {
+                    'site-title': 'تعليم الإنجليزية والترجمة',
+                    'supervisor-text': 'المشرف العام: أ/محمد عثمان - معلم لغة إنجليزية ومترجم',
+                    'hero-title': 'خدمات تعليمية وترجمة احترافية',
+                    'hero-description': 'نقدم لك خدمات تعليمية متكاملة أونلاين: دروس خصوصية لجميع المستويات، حلول تمارين بدقة وشرح مفصل، تصميم عروض PowerPoint احترافية، إعداد ملخصات دراسية جاهزة، إعداد سيرة ذاتية مميزة، كتابة Cover Letter احترافية للتقديم على الوظائف، إعداد مراسلات ورسائل إنجليزية رسمية، تنفيذ برامج تعليمية حسب الطلب.',
+                    'language-notice': 'جميع الخدمات متاحة باللغتين العربية والإنجليزية',
+                    'services-title': 'خدماتنا التعليمية',
+                    'features-title': 'لماذا تختار خدماتنا؟',
+                    'steps-title': '5 خطوات لتعلم أي مهارة بسرعة',
+                    'about-services-title': 'عن الخدمات',
+                    'about-services-description': 'نقدم خدمات تعليمية وترجمة احترافية باللغتين العربية والإنجليزية، مصممة خصيصًا لتلبية احتياجات الطلاب والمهنيين.',
+                    'our-services-title': 'خدماتنا',
+                    'contact-title': 'اتصل بنا',
+                    'copyright-text': 'جميع الحقوق محفوظة © 2023 - خدمات تعليم الإنجليزية والترجمة'
+                },
+                en: {
+                    'site-title': 'English Teaching and Translation',
+                    'supervisor-text': 'Supervisor: Mr. Mohammed Othman - English Teacher and Translator',
+                    'hero-title': 'Professional Educational and Translation Services',
+                    'hero-description': 'We offer comprehensive online educational services: Private lessons for all levels, accurate exercise solutions with detailed explanations, professional PowerPoint presentation design, ready study summaries, distinctive CV preparation, professional Cover Letter writing for job applications, preparation of official English correspondence and letters, implementation of custom educational programs.',
+                    'language-notice': 'All services are available in both Arabic and English',
+                    'services-title': 'Our Educational Services',
+                    'features-title': 'Why Choose Our Services?',
+                    'steps-title': '5 Steps to Learn Any Skill Quickly',
+                    'about-services-title': 'About Services',
+                    'about-services-description': 'We provide professional educational and translation services in both Arabic and English, specifically designed to meet the needs of students and professionals.',
+                    'our-services-title': 'Our Services',
+                    'contact-title': 'Contact Us',
+                    'copyright-text': 'All rights reserved © 2023 - English Teaching and Translation Services'
+                }
+            };
+            
+            // تحديث النصوص باستخدام الـ IDs
+            Object.keys(translations[lang]).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+        }
+        
         // وظيفة الاشتراك عبر واتساب
-        function subscribeToService(serviceName) {
+        function subscribeToService(serviceAr, serviceEn) {
             const phoneNumber = "+967772551220";
-            const message = `السلام عليكم\nنعم أستاذ أرغب الاشتراك في خدمة ${serviceName}`;
+            const currentLang = document.body.getAttribute('dir') === 'ltr' ? 'en' : 'ar';
+            let message;
+            
+            if (currentLang === 'en') {
+                message = `Hello\nYes sir, I would like to subscribe to the ${serviceEn} service`;
+            } else {
+                message = `السلام عليكم\nنعم أستاذ أرغب الاشتراك في خدمة ${serviceAr}`;
+            }
+            
             const encodedMessage = encodeURIComponent(message);
             const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
             
@@ -823,6 +899,14 @@
             if (window.innerWidth <= 768) {
                 document.getElementById('mainNav').style.display = 'none';
             }
+            
+            // تهيئة اللغة من التخزين المحلي
+            const savedLang = localStorage.getItem('preferredLanguage') || 'ar';
+            switchLanguage(savedLang);
+            
+            // إضافة مستمعي الأحداث لأزرار اللغة
+            document.getElementById('arabicBtn').addEventListener('click', () => switchLanguage('ar'));
+            document.getElementById('englishBtn').addEventListener('click', () => switchLanguage('en'));
         });
     </script>
 </body>
