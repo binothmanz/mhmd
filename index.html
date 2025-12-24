@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعليم الإنجليزية والترجمة | خدمات احترافية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+        }
+        
+        .supervisor-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .supervisor-hero {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .language-badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Services Section */
+        .section-title {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+        }
+        
+        .supervisor-section {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-right: 5px solid var(--secondary-color);
+        }
+        
+        .supervisor-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 4rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            font-size: 2.5rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .service-content p {
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .service-tag {
+            display: inline-block;
+            background-color: var(--success-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            align-self: flex-start;
+        }
+        
+        .subscribe-btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: var(--primary-color);
+        }
+        
+        /* Features Section */
+        .features {
+            background-color: var(--light-color);
+            padding: 3rem 0;
+            margin: 3rem 0;
+        }
+        
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .feature-box {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-box i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        /* Steps Section */
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 4rem;
+        }
+        
+        .step {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            flex: 1;
+            min-width: 200px;
+            max-width: 220px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-info a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .supervisor-footer {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+            border-right: 3px solid var(--accent-color);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .supervisor-hero {
+                position: static;
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .supervisor-badge {
+                order: 3;
+                margin-top: 10px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .services-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .supervisor-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <div>
+                    <h1>تعليم الإنجليزية والترجمة</h1>
+                    <div class="supervisor-badge">
+                        <i class="fas fa-user-tie"></i>
+                        <span>المشرف العام: أ/محمد عثمان</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#services">الخدمات</a></li>
+                    <li><a href="#features">المميزات</a></li>
+                    <li><a href="#about">عن المشرف</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="supervisor-hero">
+            <i class="fas fa-crown"></i>
+            <span>المشرف العام: أ/محمد عثمان - معلم لغة إنجليزية ومترجم</span>
+        </div>
+        
+        <div class="container">
+            <h2>خدمات تعليمية وترجمة احترافية</h2>
+            <p>نقدم لك خدمات تعليمية متكاملة أونلاين: دروس خصوصية لجميع المستويات، حلول تمارين بدقة وشرح مفصل، تصميم عروض PowerPoint احترافية، إعداد ملخصات دراسية جاهزة، إعداد سيرة ذاتية مميزة، كتابة Cover Letter احترافية للتقديم على الوظائف، إعداد مراسلات ورسائل إنجليزية رسمية، تنفيذ برامج تعليمية حسب الطلب.</p>
+            <div class="language-badge">
+                <i class="fas fa-language"></i> جميع الخدمات متاحة باللغتين العربية والإنجليزية
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Supervisor Section -->
+    <section id="about">
+        <div class="container">
+            <div class="supervisor-section">
+                <h3><i class="fas fa-user-tie"></i> المشرف العام</h3>
+                <h2>أ/محمد عثمان</h2>
+                <p><strong>معلم لغة إنجليزية ومترجم محترف</strong></p>
+                <p>مدرس لغة إنجليزية ذو خبرة واسعة في مجال التعليم والترجمة، حاصل على شهادات متخصصة في تدريس اللغة الإنجليزية كلغة أجنبية (TEFL) والترجمة الاحترافية. يقدم خدمات تعليمية وترجمة عالية الجودة تلبي احتياجات الطلاب والمهنيين على حد سواء.</p>
+                <div style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                    <span style="background-color: var(--secondary-color); color: white; padding: 5px 15px; border-radius: 20px;">
+                        <i class="fas fa-award"></i> خبرة 10+ سنوات
+                    </span>
+                    <span style="background-color: var(--accent-color); color: white; padding: 5px 15px; border-radius: 20px;">
+                        <i class="fas fa-graduation-cap"></i> معتمد TEFL
+                    </span>
+                    <span style="background-color: var(--success-color); color: white; padding: 5px 15px; border-radius: 20px;">
+                        <i class="fas fa-language"></i> ترجمة احترافية
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">خدماتنا التعليمية</h2>
+            <div class="services-container">
+                <!-- Service Card 1 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">مجاني - تجريبي</span>
+                        <h3>دروس خصوصية أونلاين</h3>
+                        <p>تعلم في وقتك وفي أي مكان. نقدم دروس خصوصية في اللغة الإنجليزية والرياضيات والفيزياء لجميع المستويات.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('دروس خصوصية أونلاين')">
+                            <i class="fab fa-whatsapp"></i> اشتراك في الخدمة
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">مجاني - تجريبي</span>
+                        <h3>حلول تمارين</h3>
+                        <p>حلول تمارين بدقة وشرح مفصل في اللغة الإنجليزية والرياضيات والفيزياء وغيرها من المواد.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('حلول تمارين')">
+                            <i class="fab fa-whatsapp"></i> اشتراك في الخدمة
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-powerpoint"></i>
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">مجاني - تجريبي</span>
+                        <h3>تصميم عروض بوربوينت</h3>
+                        <p>تصميم عروض PowerPoint احترافية وجذابة لتقديم عروضك ومشاريعك بشكل مميز.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('تصميم عروض بوربوينت')">
+                            <i class="fab fa-whatsapp"></i> اشتراك في الخدمة
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Service Card 4 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">مجاني - تجريبي</span>
+                        <h3>إعداد سيرة ذاتية ورسالة تغطية</h3>
+                        <p>إعداد سيرة ذاتية مميزة وكتابة Cover Letter احترافية للتقديم على الوظائف باللغتين العربية والإنجليزية.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('إعداد سيرة ذاتية ورسالة تغطية')">
+                            <i class="fab fa-whatsapp"></i> اشتراك في الخدمة
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Service Card 5 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mail-bulk"></i>
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">مجاني - تجريبي</span>
+                        <h3>إعداد مراسلات إنجليزية</h3>
+                        <p>إعداد مراسلات ورسائل إنجليزية رسمية احترافية للشركات والمؤسسات والأغراض الشخصية.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('إعداد مراسلات إنجليزية')">
+                            <i class="fab fa-whatsapp"></i> اشتراك في الخدمة
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Service Card 6 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">مجاني - تجريبي</span>
+                        <h3>إعداد ملخصات دراسية</h3>
+                        <p>إعداد ملخصات دراسية جاهزة ومبسطة في مختلف المواد لمساعدتك على الدراسة بفعالية.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('إعداد ملخصات دراسية')">
+                            <i class="fab fa-whatsapp"></i> اشتراك في الخدمة
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Service Card 7 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">مجاني - تجريبي</span>
+                        <h3>برامج تعليمية حسب الطلب</h3>
+                        <p>تنفيذ برامج تعليمية حسب الطلب لتلبية احتياجاتك التعليمية الخاصة.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('برامج تعليمية حسب الطلب')">
+                            <i class="fab fa-whatsapp"></i> اشتراك في الخدمة
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Service Card 8 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">مجاني - تجريبي</span>
+                        <h3>دروس خصوصية رياضيات وفيزياء</h3>
+                        <p>دروس خصوصية في الرياضيات والفيزياء لجميع المراحل الدراسية بأسلوب مبسط وفعال.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('دروس خصوصية رياضيات وفيزياء')">
+                            <i class="fab fa-whatsapp"></i> اشتراك في الخدمة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">لماذا تختار خدماتنا؟</h2>
+            <div class="features-container">
+                <div class="feature-box">
+                    <i class="fas fa-home"></i>
+                    <h3>تعلم من المنزل</h3>
+                    <p>تعلم من المنزل بسهولة وفعالية</p>
+                </div>
+                
+                <div class="feature-box">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>دورات مجانية</h3>
+                    <p>دورات تعليمية مجانية</p>
+                </div>
+                
+                <div class="feature-box">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>شروحات مبسطة</h3>
+                    <p>شروحات مبسطة في مختلف المجالات</p>
+                </div>
+                
+                <div class="feature-box">
+                    <i class="fas fa-download"></i>
+                    <h3>ملفات قابلة للتحميل</h3>
+                    <p>مصادر وملفات قابلة للتحميل</p>
+                </div>
+                
+                <div class="feature-box">
+                    <i class="fas fa-key"></i>
+                    <h3>مفتاح المستقبل</h3>
+                    <p>التعليم الذاتي هو مفتاح المستقبل</p>
+                </div>
+                
+                <div class="feature-box">
+                    <i class="fas fa-star"></i>
+                    <h3>انضم إلينا</h3>
+                    <p>انضم إلينا وابدأ رحلتك نحو التميز!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Steps Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">5 خطوات لتعلم أي مهارة بسرعة</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>حدد هدفك بوضوح</h3>
+                    <p>تحديد الهدف بدقة هو الخطوة الأولى نحو النجاح</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>خصص وقتًا يوميًا</h3>
+                    <p>خصص وقتًا يوميًا للتعلم والممارسة</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>تعلم من مصادر متنوعة</h3>
+                    <p>استخدم مصادر تعليمية متنوعة لتعزيز فهمك</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>طبق ما تتعلمه</h3>
+                    <p>طبّق ما تتعلمه مباشرة في مواقف حقيقية</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>راجع تقدمك</h3>
+                    <p>راجع تقدمك باستمرار وحسن من أدائك</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن الخدمات</h3>
+                    <p>نقدم خدمات تعليمية وترجمة احترافية باللغتين العربية والإنجليزية، مصممة خصيصًا لتلبية احتياجات الطلاب والمهنيين.</p>
+                    <div class="supervisor-footer">
+                        <h4><i class="fas fa-user-tie"></i> المشرف العام</h4>
+                        <p>أ/محمد عثمان</p>
+                        <p>معلم لغة إنجليزية ومترجم محترف</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>خدماتنا</h3>
+                    <ul style="list-style: none;">
+                        <li><i class="fas fa-check-circle"></i> دروس خصوصية أونلاين</li>
+                        <li><i class="fas fa-check-circle"></i> حلول تمارين</li>
+                        <li><i class="fas fa-check-circle"></i> تصميم عروض بوربوينت</li>
+                        <li><i class="fas fa-check-circle"></i> إعداد سيرة ذاتية</li>
+                        <li><i class="fas fa-check-circle"></i> مراسلات تجارية</li>
+                        <li><i class="fas fa-check-circle"></i> رسالة تغطية</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>اتصل بنا</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +967772551220</p>
+                        <p><i class="fab fa-whatsapp"></i> واتساب: +967772551220</p>
+                        <p><i class="fas fa-envelope"></i> info@example.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> اليمن</p>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <h4>المشرف العام</h4>
+                        <p><strong>أ/محمد عثمان</strong></p>
+                        <p>معلم لغة إنجليزية ومترجم</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2023 - خدمات تعليم الإنجليزية والترجمة | المشرف العام: أ/محمد عثمان</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // وظيفة الاشتراك عبر واتساب
+        function subscribeToService(serviceName) {
+            const phoneNumber = "+967772551220";
+            const message = `السلام عليكم\nنعم أستاذ أرغب الاشتراك في خدمة ${serviceName}`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappURL, '_blank');
+        }
+        
+        // تفعيل القائمة المتنقلة
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const nav = document.getElementById('mainNav');
+            nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        // إغلاق القائمة عند النقر على رابط
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    document.getElementById('mainNav').style.display = 'none';
+                }
+            });
+        });
+        
+        // تحديث عرض القائمة عند تغيير حجم النافذة
+        window.addEventListener('resize', function() {
+            const nav = document.getElementById('mainNav');
+            if (window.innerWidth > 768) {
+                nav.style.display = 'block';
+            } else {
+                nav.style.display = 'none';
+            }
+        });
+        
+        // تهيئة القائمة المتنقلة عند التحميل
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.innerWidth <= 768) {
+                document.getElementById('mainNav').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
