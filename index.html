@@ -304,6 +304,88 @@
             margin-bottom: 1rem;
         }
         
+        /* Teachers Section */
+        .teachers {
+            padding: 3rem 0;
+            background-color: white;
+        }
+        
+        .teachers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 2rem;
+        }
+        
+        .teacher-card {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            padding-bottom: 1.5rem;
+        }
+        
+        .teacher-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .teacher-header {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .teacher-header i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .teacher-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .teacher-header .title {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .teacher-info {
+            padding: 1.5rem;
+        }
+        
+        .teacher-details {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .teacher-detail {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #555;
+        }
+        
+        .teacher-detail i {
+            color: var(--secondary-color);
+            width: 20px;
+        }
+        
+        .teacher-bio {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
         /* Steps Section */
         .steps-container {
             display: flex;
@@ -423,6 +505,10 @@
                 grid-template-columns: 1fr;
             }
             
+            .teachers-container {
+                grid-template-columns: 1fr;
+            }
+            
             .footer-content {
                 flex-direction: column;
             }
@@ -462,6 +548,10 @@
             margin-right: 15px;
             margin-bottom: 0;
         }
+        
+        body[dir="ltr"] .teacher-detail {
+            justify-content: flex-start;
+        }
     </style>
 </head>
 <body dir="rtl" lang="ar">
@@ -498,6 +588,7 @@
                 <ul>
                     <li><a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
                     <li><a href="#services" data-ar="الخدمات" data-en="Services">الخدمات</a></li>
+                    <li><a href="#teachers" data-ar="معلمونا" data-en="Our Teachers">معلمونا</a></li>
                     <li><a href="#features" data-ar="المميزات" data-en="Features">المميزات</a></li>
                     <li><a href="#contact" data-ar="اتصل بنا" data-en="Contact">اتصل بنا</a></li>
                 </ul>
@@ -566,22 +657,37 @@
                     </div>
                 </div>
                 
-                <!-- Service Card 4 -->
+                <!-- Service Card 4 - إعداد سيرة ذاتية -->
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-file-alt"></i>
                     </div>
                     <div class="service-content">
                         <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
-                        <h3 data-ar="إعداد سيرة ذاتية ورسالة تغطية" data-en="CV and Cover Letter Preparation">إعداد سيرة ذاتية ورسالة تغطية</h3>
-                        <p data-ar="إعداد سيرة ذاتية مميزة وكتابة Cover Letter احترافية للتقديم على الوظائف باللغتين العربية والإنجليزية." data-en="Prepare distinctive CVs and professional Cover Letters for job applications in both Arabic and English.">إعداد سيرة ذاتية مميزة وكتابة Cover Letter احترافية للتقديم على الوظائف باللغتين العربية والإنجليزية.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('إعداد سيرة ذاتية ورسالة تغطية', 'CV and Cover Letter Preparation')">
+                        <h3 data-ar="إعداد سيرة ذاتية" data-en="CV Preparation">إعداد سيرة ذاتية</h3>
+                        <p data-ar="إعداد سيرة ذاتية مميزة واحترافية باللغتين العربية والإنجليزية، مع تصميم عصري يناسب مجالك وخبراتك." data-en="Prepare a distinctive and professional CV in both Arabic and English, with a modern design that suits your field and experience.">إعداد سيرة ذاتية مميزة واحترافية باللغتين العربية والإنجليزية، مع تصميم عصري يناسب مجالك وخبراتك.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('إعداد سيرة ذاتية', 'CV Preparation')">
                             <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
                         </button>
                     </div>
                 </div>
                 
-                <!-- Service Card 5 -->
+                <!-- Service Card 5 - رسالة تغطية -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                        <h3 data-ar="رسالة تغطية (Cover Letter)" data-en="Cover Letter Preparation">رسالة تغطية (Cover Letter)</h3>
+                        <p data-ar="كتابة Cover Letter احترافية للتقديم على الوظائف باللغتين العربية والإنجليزية، مع تخصيصها لكل وظيفة لزيادة فرص القبول." data-en="Write professional Cover Letters for job applications in both Arabic and English, customized for each position to increase acceptance chances.">كتابة Cover Letter احترافية للتقديم على الوظائف باللغتين العربية والإنجليزية، مع تخصيصها لكل وظيفة لزيادة فرص القبول.</p>
+                        <button class="subscribe-btn" onclick="subscribeToService('رسالة تغطية (Cover Letter)', 'Cover Letter Preparation')">
+                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Service Card 6 -->
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-mail-bulk"></i>
@@ -596,7 +702,7 @@
                     </div>
                 </div>
                 
-                <!-- Service Card 6 -->
+                <!-- Service Card 7 -->
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-book-open"></i>
@@ -611,7 +717,7 @@
                     </div>
                 </div>
                 
-                <!-- Service Card 7 -->
+                <!-- Service Card 8 -->
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-laptop-code"></i>
@@ -626,7 +732,7 @@
                     </div>
                 </div>
                 
-                <!-- Service Card 8 -->
+                <!-- Service Card 9 -->
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-calculator"></i>
@@ -638,6 +744,98 @@
                         <button class="subscribe-btn" onclick="subscribeToService('دروس خصوصية رياضيات وفيزياء', 'Private Math and Physics Lessons')">
                             <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
                         </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Teachers Section -->
+    <section class="teachers" id="teachers">
+        <div class="container">
+            <h2 class="section-title" id="teachers-title">معلمونا المتخصصون</h2>
+            <div class="teachers-container">
+                <!-- Teacher Card 1 -->
+                <div class="teacher-card">
+                    <div class="teacher-header">
+                        <i class="fas fa-user-tie"></i>
+                        <h3 data-ar="المشرف العام" data-en="Supervisor">المشرف العام</h3>
+                        <div class="title" data-ar="أ/محمد عثمان" data-en="Mr. Mohammed Othman">أ/محمد عثمان</div>
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-details">
+                            <div class="teacher-detail">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span data-ar="التخصص: لغة إنجليزية وترجمة" data-en="Specialization: English and Translation">التخصص: لغة إنجليزية وترجمة</span>
+                            </div>
+                            <div class="teacher-detail">
+                                <i class="fas fa-user-graduate"></i>
+                                <span data-ar="المؤهل: بكالوريوس لغة إليزية" data-en="Qualification: Bachelor's in English">المؤهل: بكالوريوس لغة إنجليزية</span>
+                            </div>
+                            <div class="teacher-detail">
+                                <i class="fas fa-briefcase"></i>
+                                <span data-ar="الخبرة: 10+ سنوات" data-en="Experience: 10+ years">الخبرة: 10+ سنوات</span>
+                            </div>
+                        </div>
+                        <div class="teacher-bio" data-ar="معلم لغة إنجليزية ومترجم محترف ذو خبرة واسعة في تدريس اللغة الإنجليزية كلغة أجنبية والترجمة. حاصل على شهادة TEFL ومتخصص في إعداد المواد التعليمية وتصميم برامج تعليمية مخصصة." data-en="English teacher and professional translator with extensive experience in teaching English as a foreign language and translation. Holds a TEFL certificate and specializes in preparing educational materials and designing custom educational programs.">
+                            معلم لغة إنجليزية ومترجم محترف ذو خبرة واسعة في تدريس اللغة الإنجليزية كلغة أجنبية والترجمة. حاصل على شهادة TEFL ومتخصص في إعداد المواد التعليمية وتصميم برامج تعليمية مخصصة.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Teacher Card 2 -->
+                <div class="teacher-card">
+                    <div class="teacher-header">
+                        <i class="fas fa-atom"></i>
+                        <h3 data-ar="مدرسة فيزياء" data-en="Physics Teacher">مدرسة فيزياء</h3>
+                        <div class="title" data-ar="أ/أماني الذماري" data-en="Ms. Amani Al-Thamari">أ/أماني الذماري</div>
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-details">
+                            <div class="teacher-detail">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span data-ar="التخصص: فيزياء" data-en="Specialization: Physics">التخصص: فيزياء</span>
+                            </div>
+                            <div class="teacher-detail">
+                                <i class="fas fa-user-graduate"></i>
+                                <span data-ar="المؤهل: بكالوريوس فيزياء" data-en="Qualification: Bachelor's in Physics">المؤهل: بكالوريوس فيزياء</span>
+                            </div>
+                            <div class="teacher-detail">
+                                <i class="fas fa-briefcase"></i>
+                                <span data-ar="الخبرة: 7+ سنوات" data-en="Experience: 7+ years">الخبرة: 7+ سنوات</span>
+                            </div>
+                        </div>
+                        <div class="teacher-bio" data-ar="مدرسة فيزياء متخصصة بخبرة واسعة في تدريس الفيزياء لجميع المستويات الدراسية. تمتلك أسلوباً مبسطاً في شرح المفاهيم الفيزيائية المعقدة، وتقدم دروس خصوصية وحلول تمارين بشرح مفصل. متخصصة في إعداد ملخصات دراسية وبرامج تعليمية مخصصة لمادة الفيزياء." data-en="Specialized physics teacher with extensive experience in teaching physics at all academic levels. Possesses a simplified approach to explaining complex physics concepts, provides private lessons and detailed exercise solutions. Specializes in preparing study summaries and custom educational programs for physics.">
+                            مدرسة فيزياء متخصصة بخبرة واسعة في تدريس الفيزياء لجميع المستويات الدراسية. تمتلك أسلوباً مبسطاً في شرح المفاهيم الفيزيائية المعقدة، وتقدم دروس خصوصية وحلول تمارين بشرح مفصل. متخصصة في إعداد ملخصات دراسية وبرامج تعليمية مخصصة لمادة الفيزياء.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Teacher Card 3 - يمكن إضافة المزيد -->
+                <div class="teacher-card">
+                    <div class="teacher-header">
+                        <i class="fas fa-calculator"></i>
+                        <h3 data-ar="معلم رياضيات" data-en="Mathematics Teacher">معلم رياضيات</h3>
+                        <div class="title" data-ar="أ/عبدالله أحمد" data-en="Mr. Abdullah Ahmed">أ/عبدالله أحمد</div>
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-details">
+                            <div class="teacher-detail">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span data-ar="التخصص: رياضيات" data-en="Specialization: Mathematics">التخصص: رياضيات</span>
+                            </div>
+                            <div class="teacher-detail">
+                                <i class="fas fa-user-graduate"></i>
+                                <span data-ar="المؤهل: ماجستير رياضيات" data-en="Qualification: Master's in Mathematics">المؤهل: ماجستير رياضيات</span>
+                            </div>
+                            <div class="teacher-detail">
+                                <i class="fas fa-briefcase"></i>
+                                <span data-ar="الخبرة: 8+ سنوات" data-en="Experience: 8+ years">الخبرة: 8+ سنوات</span>
+                            </div>
+                        </div>
+                        <div class="teacher-bio" data-ar="معلم رياضيات متخصص بخبرة في تدريس الرياضيات لجميع المراحل الدراسية. متخصص في تبسيط المفاهيم الرياضية المعقدة وجعلها سهلة الفهم. يقدم دروس خصوصية وحلول تمارين بإسلوب واضح ومنظم." data-en="Specialized mathematics teacher with experience in teaching mathematics at all academic levels. Specializes in simplifying complex mathematical concepts and making them easy to understand. Provides private lessons and exercise solutions in a clear and organized manner.">
+                            معلم رياضيات متخصص بخبرة في تدريس الرياضيات لجميع المراحل الدراسية. متخصص في تبسيط المفاهيم الرياضية المعقدة وجعلها سهلة الفهم. يقدم دروس خصوصية وحلول تمارين بإسلوب واضح ومنظم.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -742,8 +940,8 @@
                         <li><i class="fas fa-check-circle"></i> <span data-ar="حلول تمارين" data-en="Exercise Solutions">حلول تمارين</span></li>
                         <li><i class="fas fa-check-circle"></i> <span data-ar="تصميم عروض بوربوينت" data-en="PowerPoint Design">تصميم عروض بوربوينت</span></li>
                         <li><i class="fas fa-check-circle"></i> <span data-ar="إعداد سيرة ذاتية" data-en="CV Preparation">إعداد سيرة ذاتية</span></li>
-                        <li><i class="fas fa-check-circle"></i> <span data-ar="مراسلات تجارية" data-en="Business Correspondence">مراسلات تجارية</span></li>
                         <li><i class="fas fa-check-circle"></i> <span data-ar="رسالة تغطية" data-en="Cover Letter">رسالة تغطية</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-ar="مراسلات تجارية" data-en="Business Correspondence">مراسلات تجارية</span></li>
                     </ul>
                 </div>
                 
@@ -817,6 +1015,7 @@
                     'hero-description': 'نقدم لك خدمات تعليمية متكاملة أونلاين: دروس خصوصية لجميع المستويات، حلول تمارين بدقة وشرح مفصل، تصميم عروض PowerPoint احترافية، إعداد ملخصات دراسية جاهزة، إعداد سيرة ذاتية مميزة، كتابة Cover Letter احترافية للتقديم على الوظائف، إعداد مراسلات ورسائل إنجليزية رسمية، تنفيذ برامج تعليمية حسب الطلب.',
                     'language-notice': 'جميع الخدمات متاحة باللغتين العربية والإنجليزية',
                     'services-title': 'خدماتنا التعليمية',
+                    'teachers-title': 'معلمونا المتخصصون',
                     'features-title': 'لماذا تختار خدماتنا؟',
                     'steps-title': '5 خطوات لتعلم أي مهارة بسرعة',
                     'about-services-title': 'عن الخدمات',
@@ -832,6 +1031,7 @@
                     'hero-description': 'We offer comprehensive online educational services: Private lessons for all levels, accurate exercise solutions with detailed explanations, professional PowerPoint presentation design, ready study summaries, distinctive CV preparation, professional Cover Letter writing for job applications, preparation of official English correspondence and letters, implementation of custom educational programs.',
                     'language-notice': 'All services are available in both Arabic and English',
                     'services-title': 'Our Educational Services',
+                    'teachers-title': 'Our Specialized Teachers',
                     'features-title': 'Why Choose Our Services?',
                     'steps-title': '5 Steps to Learn Any Skill Quickly',
                     'about-services-title': 'About Services',
