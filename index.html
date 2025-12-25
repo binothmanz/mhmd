@@ -197,7 +197,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
-            margin-bottom: 4rem;
+            margin-bottom: 2rem;
+            min-height: 800px;
         }
         
         .service-card {
@@ -272,36 +273,90 @@
             background-color: var(--primary-color);
         }
         
-        /* Features Section */
-        .features {
-            background-color: var(--light-color);
-            padding: 3rem 0;
-            margin: 3rem 0;
+        /* نظام التقسيم للصفحات (Pagination) - عام */
+        .pagination-container {
+            margin: 40px 0;
         }
         
-        .features-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
         
-        .feature-box {
+        .pagination-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .pagination-btn:hover:not(:disabled) {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .pagination-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        
+        .page-numbers {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .page-number {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: var(--shadow);
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
             transition: var(--transition);
         }
         
-        .feature-box:hover {
-            transform: translateY(-5px);
+        .page-number:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
         }
         
-        .feature-box i {
-            font-size: 2.5rem;
+        .page-number.active {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .page-number.dots {
+            border: none;
+            background: none;
+            cursor: default;
+            width: 20px;
+        }
+        
+        .page-number.dots:hover {
+            background: none;
             color: var(--secondary-color);
-            margin-bottom: 1rem;
+            transform: none;
         }
         
         /* Teachers Section */
@@ -314,7 +369,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 2rem;
+            margin-bottom: 2rem;
+            min-height: 600px;
         }
         
         .teacher-card {
@@ -384,6 +440,38 @@
             margin-top: 1rem;
             padding-top: 1rem;
             border-top: 1px solid #eee;
+        }
+        
+        /* Features Section */
+        .features {
+            background-color: var(--light-color);
+            padding: 3rem 0;
+            margin: 3rem 0;
+        }
+        
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .feature-box {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-box i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
         }
         
         /* Steps Section */
@@ -471,6 +559,19 @@
             font-size: 0.9rem;
         }
         
+        /* تعديلات النظام الجديد */
+        body[dir="ltr"] .pagination-btn i.fa-chevron-right {
+            order: 2;
+        }
+        
+        body[dir="ltr"] .pagination-btn i.fa-chevron-left {
+            order: 1;
+        }
+        
+        body[dir="ltr"] .pagination-btn {
+            flex-direction: row;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-container {
@@ -501,16 +602,42 @@
                 font-size: 1rem;
             }
             
-            .services-container {
-                grid-template-columns: 1fr;
-            }
-            
+            .services-container,
             .teachers-container {
                 grid-template-columns: 1fr;
             }
             
+            .features-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step {
+                max-width: 100%;
+                width: 100%;
+            }
+            
             .footer-content {
                 flex-direction: column;
+            }
+            
+            .pagination-controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .pagination-btn {
+                width: 200px;
+                justify-content: center;
+            }
+            
+            .page-numbers {
+                order: -1;
+                margin-bottom: 10px;
             }
         }
         
@@ -611,291 +738,335 @@
     <section id="services">
         <div class="container">
             <h2 class="section-title" id="services-title">خدماتنا التعليمية</h2>
-            <div class="services-container">
-                <!-- Service Card 1 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chalkboard-teacher"></i>
+            
+            <!-- حاوية البطاقات مع نظام الصفحات -->
+            <div class="services-container" id="services-container">
+                <!-- سيتم عرض 6 بطاقات فقط في كل مرة -->
+            </div>
+            
+            <!-- أزرار التنقل بين الصفحات -->
+            <div class="pagination-container">
+                <div class="pagination-controls">
+                    <button id="services-prev-btn" class="pagination-btn" disabled>
+                        <i class="fas fa-chevron-right"></i>
+                        <span data-ar="السابق" data-en="Previous">السابق</span>
+                    </button>
+                    
+                    <div class="page-numbers" id="services-page-numbers">
+                        <!-- سيتم إنشاء أرقام الصفحات ديناميكياً -->
                     </div>
-                    <div class="service-content">
-                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
-                        <h3 data-ar="دروس خصوصية أونلاين" data-en="Private Online Lessons">دروس خصوصية أونلاين</h3>
-                        <p data-ar="تعلم في وقتك وفي أي مكان. نقدم دروس خصوصية في اللغة الإنجليزية والرياضيات والفيزياء لجميع المستويات." data-en="Learn at your own time and anywhere. We provide private lessons in English, Mathematics, and Physics for all levels.">تعلم في وقتك وفي أي مكان. نقدم دروس خصوصية في اللغة الإنجليزية والرياضيات والفيزياء لجميع المستويات.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('دروس خصوصية أونلاين', 'Private Online Lessons')">
-                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
-                        </button>
-                    </div>
+                    
+                    <button id="services-next-btn" class="pagination-btn">
+                        <span data-ar="التالي" data-en="Next">التالي</span>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
                 </div>
-                
-                <!-- Service Card 2 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tasks"></i>
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
-                        <h3 data-ar="حلول تمارين" data-en="Exercise Solutions">حلول تمارين</h3>
-                        <p data-ar="حلول تمارين بدقة وشرح مفصل في اللغة الإنجليزية والرياضيات والفيزياء وغيرها من المواد." data-en="Accurate exercise solutions with detailed explanations in English, Mathematics, Physics, and other subjects.">حلول تمارين بدقة وشرح مفصل في اللغة الإنجليزية والرياضيات والفيزياء وغيرها من المواد.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('حلول تمارين', 'Exercise Solutions')">
-                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Service Card 3 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-file-powerpoint"></i>
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
-                        <h3 data-ar="تصميم عروض بوربوينت" data-en="PowerPoint Presentation Design">تصميم عروض بوربوينت</h3>
-                        <p data-ar="تصميم عروض PowerPoint احترافية وجذابة لتقديم عروضك ومشاريعك بشكل مميز." data-en="Design professional and attractive PowerPoint presentations to showcase your projects and presentations.">تصميم عروض PowerPoint احترافية وجذابة لتقديم عروضك ومشاريعك بشكل مميز.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('تصميم عروض بوربوينت', 'PowerPoint Presentation Design')">
-                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Service Card 4 - إعداد سيرة ذاتية -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
-                        <h3 data-ar="إعداد سيرة ذاتية" data-en="CV Preparation">إعداد سيرة ذاتية</h3>
-                        <p data-ar="إعداد سيرة ذاتية مميزة واحترافية باللغتين العربية والإنجليزية، مع تصميم عصري يناسب مجالك وخبراتك." data-en="Prepare a distinctive and professional CV in both Arabic and English, with a modern design that suits your field and experience.">إعداد سيرة ذاتية مميزة واحترافية باللغتين العربية والإنجليزية، مع تصميم عصري يناسب مجالك وخبراتك.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('إعداد سيرة ذاتية', 'CV Preparation')">
-                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Service Card 5 - رسالة تغطية -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-envelope-open-text"></i>
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
-                        <h3 data-ar="رسالة تغطية (Cover Letter)" data-en="Cover Letter Preparation">رسالة تغطية (Cover Letter)</h3>
-                        <p data-ar="كتابة Cover Letter احترافية للتقديم على الوظائف باللغتين العربية والإنجليزية، مع تخصيصها لكل وظيفة لزيادة فرص القبول." data-en="Write professional Cover Letters for job applications in both Arabic and English, customized for each position to increase acceptance chances.">كتابة Cover Letter احترافية للتقديم على الوظائف باللغتين العربية والإنجليزية، مع تخصيصها لكل وظيفة لزيادة فرص القبول.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('رسالة تغطية (Cover Letter)', 'Cover Letter Preparation')">
-                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Service Card 6 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-mail-bulk"></i>
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
-                        <h3 data-ar="إعداد مراسلات إنجليزية" data-en="English Correspondence Preparation">إعداد مراسلات إنجليزية</h3>
-                        <p data-ar="إعداد مراسلات ورسائل إنجليزية رسمية احترافية للشركات والمؤسسات والأغراض الشخصية." data-en="Prepare professional official English correspondence and letters for companies, institutions, and personal purposes.">إعداد مراسلات ورسائل إنجليزية رسمية احترافية للشركات والمؤسسات والأغراض الشخصية.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('إعداد مراسلات إنجليزية', 'English Correspondence Preparation')">
-                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Service Card 7 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
-                        <h3 data-ar="إعداد ملخصات دراسية" data-en="Study Summaries Preparation">إعداد ملخصات دراسية</h3>
-                        <p data-ar="إعداد ملخصات دراسية جاهزة ومبسطة في مختلف المواد لمساعدتك على الدراسة بفعالية." data-en="Prepare ready and simplified study summaries in various subjects to help you study effectively.">إعداد ملخصات دراسية جاهزة ومبسطة في مختلف المواد لمساعدتك على الدراسة بفعالية.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('إعداد ملخصات دراسية', 'Study Summaries Preparation')">
-                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Service Card 8 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
-                        <h3 data-ar="برامج تعليمية حسب الطلب" data-en="Custom Educational Programs">برامج تعليمية حسب الطلب</h3>
-                        <p data-ar="تنفيذ برامج تعليمية حسب الطلب لتلبية احتياجاتك التعليمية الخاصة." data-en="Implement custom educational programs to meet your specific learning needs.">تنفيذ برامج تعليمية حسب الطلب لتلبية احتياجاتك التعليمية الخاصة.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('برامج تعليمية حسب الطلب', 'Custom Educational Programs')">
-                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Service Card 9 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
-                        <h3 data-ar="دروس خصوصية رياضيات وفيزياء" data-en="Private Math and Physics Lessons">دروس خصوصية رياضيات وفيزياء</h3>
-                        <p data-ar="دروس خصوصية في الرياضيات والفيزياء لجميع المراحل الدراسية بأسلوب مبسط وفعال." data-en="Private lessons in Mathematics and Physics for all academic levels with a simplified and effective approach.">دروس خصوصية في الرياضيات والفيزياء لجميع المراحل الدراسية بأسلوب مبسط وفعال.</p>
-                        <button class="subscribe-btn" onclick="subscribeToService('دروس خصوصية رياضيات وفيزياء', 'Private Math and Physics Lessons')">
-                            <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
-                        </button>
-                    </div>
-                </div>
-
-
-
-<!-- Service Card 10 - خدمات هندسة الاتصالات والشبكات -->
-<div class="service-card">
-    <div class="service-icon">
-        <i class="fas fa-network-wired"></i> <!-- أيقونة هندسة الشبكات -->
-    </div>
-    <div class="service-content">
-        <span class="service-tag" data-ar="استشارات هندسية" data-en="Engineering Consultations">استشارات هندسية</span>
-        <h3 data-ar="استشارات هندسة الاتصالات والشبكات" data-en="Communications and Networks Engineering Consultations">استشارات هندسة الاتصالات والشبكات</h3>
-        <p data-ar="استشارات متخصصة في تصميم وتنفيذ مشاريع شبكات الاتصالات، الأنظمة الأمنية، والبنية التحتية للشبكات مع خبرة 20+ عام." data-en="Specialized consultations in designing and implementing telecommunications network projects, security systems, and network infrastructure with 20+ years of experience.">استشارات متخصصة في تصميم وتنفيذ مشاريع شبكات الاتصالات، الأنظمة الأمنية، والبنية التحتية للشبكات مع خبرة 20+ عام.</p>
-        <button class="subscribe-btn" onclick="subscribeToService('استشارات هندسة الاتصالات والشبكات', 'Communications and Networks Engineering Consultations')">
-            <i class="fab fa-whatsapp"></i> <span data-ar="تواصل للحجز" data-en="Contact for Booking">تواصل للحجز</span>
-        </button>
-    </div>
-</div>
-
-
-
             </div>
         </div>
     </section>
+
+    <!-- جميع بطاقات الخدمات (مخفية - تستخدم للبيانات) -->
+    <div style="display: none;" id="all-services-data">
+        <!-- Service Card 1 -->
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <div class="service-content">
+                <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                <h3 data-ar="دروس خصوصية أونلاين" data-en="Private Online Lessons">دروس خصوصية أونلاين</h3>
+                <p data-ar="تعلم في وقتك وفي أي مكان. نقدم دروس خصوصية في اللغة الإنجليزية والرياضيات والفيزياء لجميع المستويات." data-en="Learn at your own time and anywhere. We provide private lessons in English, Mathematics, and Physics for all levels.">تعلم في وقتك وفي أي مكان. نقدم دروس خصوصية في اللغة الإنجليزية والرياضيات والفيزياء لجميع المستويات.</p>
+                <button class="subscribe-btn">
+                    <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Service Card 2 -->
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-tasks"></i>
+            </div>
+            <div class="service-content">
+                <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                <h3 data-ar="حلول تمارين" data-en="Exercise Solutions">حلول تمارين</h3>
+                <p data-ar="حلول تمارين بدقة وشرح مفصل في اللغة الإنجليزية والرياضيات والفيزياء وغيرها من المواد." data-en="Accurate exercise solutions with detailed explanations in English, Mathematics, Physics, and other subjects.">حلول تمارين بدقة وشرح مفصل في اللغة الإنجليزية والرياضيات والفيزياء وغيرها من المواد.</p>
+                <button class="subscribe-btn">
+                    <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Service Card 3 -->
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-file-powerpoint"></i>
+            </div>
+            <div class="service-content">
+                <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                <h3 data-ar="تصميم عروض بوربوينت" data-en="PowerPoint Presentation Design">تصميم عروض بوربوينت</h3>
+                <p data-ar="تصميم عروض PowerPoint احترافية وجذابة لتقديم عروضك ومشاريعك بشكل مميز." data-en="Design professional and attractive PowerPoint presentations to showcase your projects and presentations.">تصميم عروض PowerPoint احترافية وجذابة لتقديم عروضك ومشاريعك بشكل مميز.</p>
+                <button class="subscribe-btn">
+                    <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Service Card 4 - إعداد سيرة ذاتية -->
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="service-content">
+                <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                <h3 data-ar="إعداد سيرة ذاتية" data-en="CV Preparation">إعداد سيرة ذاتية</h3>
+                <p data-ar="إعداد سيرة ذاتية مميزة واحترافية باللغتين العربية والإنجليزية، مع تصميم عصري يناسب مجالك وخبراتك." data-en="Prepare a distinctive and professional CV in both Arabic and English, with a modern design that suits your field and experience.">إعداد سيرة ذاتية مميزة واحترافية باللغتين العربية والإنجليزية، مع تصميم عصري يناسب مجالك وخبراتك.</p>
+                <button class="subscribe-btn">
+                    <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Service Card 5 - رسالة تغطية -->
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-envelope-open-text"></i>
+            </div>
+            <div class="service-content">
+                <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                <h3 data-ar="رسالة تغطية (Cover Letter)" data-en="Cover Letter Preparation">رسالة تغطية (Cover Letter)</h3>
+                <p data-ar="كتابة Cover Letter احترافية للتقديم على الوظائف باللغتين العربية والإنجليزية، مع تخصيصها لكل وظيفة لزيادة فرص القبول." data-en="Write professional Cover Letters for job applications in both Arabic and English, customized for each position to increase acceptance chances.">كتابة Cover Letter احترافية للتقديم على الوظائف باللغتين العربية والإنجليزية، مع تخصيصها لكل وظيفة لزيادة فرص القبول.</p>
+                <button class="subscribe-btn">
+                    <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Service Card 6 -->
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-mail-bulk"></i>
+            </div>
+            <div class="service-content">
+                <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                <h3 data-ar="إعداد مراسلات إنجليزية" data-en="English Correspondence Preparation">إعداد مراسلات إنجليزية</h3>
+                <p data-ar="إعداد مراسلات ورسائل إنجليزية رسمية احترافية للشركات والمؤسسات والأغراض الشخصية." data-en="Prepare professional official English correspondence and letters for companies, institutions, and personal purposes.">إعداد مراسلات ورسائل إنجليزية رسمية احترافية للشركات والمؤسسات والأغراض الشخصية.</p>
+                <button class="subscribe-btn">
+                    <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Service Card 7 -->
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <div class="service-content">
+                <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                <h3 data-ar="إعداد ملخصات دراسية" data-en="Study Summaries Preparation">إعداد ملخصات دراسية</h3>
+                <p data-ar="إعداد ملخصات دراسية جاهزة ومبسطة في مختلف المواد لمساعدتك على الدراسة بفعالية." data-en="Prepare ready and simplified study summaries in various subjects to help you study effectively.">إعداد ملخصات دراسية جاهزة ومبسطة في مختلف المواد لمساعدتك على الدراسة بفعالية.</p>
+                <button class="subscribe-btn">
+                    <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Service Card 8 -->
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-laptop-code"></i>
+            </div>
+            <div class="service-content">
+                <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                <h3 data-ar="برامج تعليمية حسب الطلب" data-en="Custom Educational Programs">برامج تعليمية حسب الطلب</h3>
+                <p data-ar="تنفيذ برامج تعليمية حسب الطلب لتلبية احتياجاتك التعليمية الخاصة." data-en="Implement custom educational programs to meet your specific learning needs.">تنفيذ برامج تعليمية حسب الطلب لتلبية احتياجاتك التعليمية الخاصة.</p>
+                <button class="subscribe-btn">
+                    <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Service Card 9 -->
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-calculator"></i>
+            </div>
+            <div class="service-content">
+                <span class="service-tag" data-ar="مجاني - تجريبي" data-en="Free - Trial">مجاني - تجريبي</span>
+                <h3 data-ar="دروس خصوصية رياضيات وفيزياء" data-en="Private Math and Physics Lessons">دروس خصوصية رياضيات وفيزياء</h3>
+                <p data-ar="دروس خصوصية في الرياضيات والفيزياء لجميع المراحل الدراسية بأسلوب مبسط وفعال." data-en="Private lessons in Mathematics and Physics for all academic levels with a simplified and effective approach.">دروس خصوصية في الرياضيات والفيزياء لجميع المراحل الدراسية بأسلوب مبسط وفعال.</p>
+                <button class="subscribe-btn">
+                    <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Service Card 10 - خدمات هندسة الاتصالات والشبكات للمهندس نظير محسن -->
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-network-wired"></i>
+            </div>
+            <div class="service-content">
+                <span class="service-tag" data-ar="استشارات هندسية" data-en="Engineering Consultations">استشارات هندسية</span>
+                <h3 data-ar="استشارات هندسة الاتصالات والشبكات" data-en="Communications and Networks Engineering Consultations">استشارات هندسة الاتصالات والشبكات</h3>
+                <p data-ar="استشارات متخصصة في تصميم وتنفيذ مشاريع شبكات الاتصالات، الأنظمة الأمنية، والبنية التحتية للشبكات مع خبرة 20+ عام." data-en="Specialized consultations in designing and implementing telecommunications network projects, security systems, and network infrastructure with 20+ years of experience.">استشارات متخصصة في تصميم وتنفيذ مشاريع شبكات الاتصالات، الأنظمة الأمنية، والبنية التحتية للشبكات مع خبرة 20+ عام.</p>
+                <button class="subscribe-btn">
+                    <i class="fab fa-whatsapp"></i> <span data-ar="تواصل للحجز" data-en="Contact for Booking">تواصل للحجز</span>
+                </button>
+            </div>
+        </div>
+    </div>
     
     <!-- Teachers Section -->
     <section class="teachers" id="teachers">
         <div class="container">
             <h2 class="section-title" id="teachers-title">معلمونا المتخصصون</h2>
-            <div class="teachers-container">
-                <!-- Teacher Card 1 -->
-                <div class="teacher-card">
-                    <div class="teacher-header">
-                        <i class="fas fa-user-tie"></i>
-                        <h3 data-ar="المشرف العام" data-en="Supervisor">المشرف العام</h3>
-                        <div class="title" data-ar="أ/محمد عثمان" data-en="Mr. Mohammed Othman">أ/محمد عثمان</div>
+            
+            <!-- حاوية المعلمين مع نظام الصفحات -->
+            <div class="teachers-container" id="teachers-container">
+                <!-- سيتم عرض 3 بطاقات فقط في كل مرة -->
+            </div>
+            
+            <!-- أزرار التنقل بين الصفحات -->
+            <div class="pagination-container">
+                <div class="pagination-controls">
+                    <button id="teachers-prev-btn" class="pagination-btn" disabled>
+                        <i class="fas fa-chevron-right"></i>
+                        <span data-ar="السابق" data-en="Previous">السابق</span>
+                    </button>
+                    
+                    <div class="page-numbers" id="teachers-page-numbers">
+                        <!-- سيتم إنشاء أرقام الصفحات ديناميكياً -->
                     </div>
-                    <div class="teacher-info">
-                        <div class="teacher-details">
-                            <div class="teacher-detail">
-                                <i class="fas fa-graduation-cap"></i>
-                                <span data-ar="التخصص: لغة إنجليزية وترجمة" data-en="Specialization: English and Translation">التخصص: لغة إنجليزية وترجمة</span>
-                            </div>
-                            <div class="teacher-detail">
-                                <i class="fas fa-user-graduate"></i>
-                                <span data-ar="المؤهل: بكالوريوس لغة إليزية" data-en="Qualification: Bachelor's in English">المؤهل: بكالوريوس لغة إنجليزية</span>
-                            </div>
-                            <div class="teacher-detail">
-                                <i class="fas fa-briefcase"></i>
-                                <span data-ar="الخبرة: 10+ سنوات" data-en="Experience: 10+ years">الخبرة: 10+ سنوات</span>
-                            </div>
-                        </div>
-                        <div class="teacher-bio" data-ar="معلم لغة إنجليزية ومترجم محترف ذو خبرة واسعة في تدريس اللغة الإنجليزية كلغة أجنبية والترجمة. حاصل على شهادة TEFL ومتخصص في إعداد المواد التعليمية وتصميم برامج تعليمية مخصصة." data-en="English teacher and professional translator with extensive experience in teaching English as a foreign language and translation. Holds a TEFL certificate and specializes in preparing educational materials and designing custom educational programs.">
-                            معلم لغة إنجليزية ومترجم محترف ذو خبرة واسعة في تدريس اللغة الإنجليزية كلغة أجنبية والترجمة. حاصل على شهادة TEFL ومتخصص في إعداد المواد التعليمية وتصميم برامج تعليمية مخصصة.
-                        </div>
-                    </div>
+                    
+                    <button id="teachers-next-btn" class="pagination-btn">
+                        <span data-ar="التالي" data-en="Next">التالي</span>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
                 </div>
-                
-                <!-- Teacher Card 2 -->
-                <div class="teacher-card">
-                    <div class="teacher-header">
-                        <i class="fas fa-atom"></i>
-                        <h3 data-ar="مدرسة فيزياء" data-en="Physics Teacher">مدرسة فيزياء</h3>
-                        <div class="title" data-ar="أ/أماني محمد" data-en="Ms. Amani Al-Thamari">أ/أماني محمد</div>
-                    </div>
-                    <div class="teacher-info">
-                        <div class="teacher-details">
-                            <div class="teacher-detail">
-                                <i class="fas fa-graduation-cap"></i>
-                                <span data-ar="التخصص: فيزياء" data-en="Specialization: Physics">التخصص: فيزياء</span>
-                            </div>
-                            <div class="teacher-detail">
-                                <i class="fas fa-user-graduate"></i>
-                                <span data-ar="المؤهل: بكالوريوس فيزياء" data-en="Qualification: Bachelor's in Physics">المؤهل: بكالوريوس فيزياء</span>
-                            </div>
-                            <div class="teacher-detail">
-                                <i class="fas fa-briefcase"></i>
-                                <span data-ar="الخبرة: 7+ سنوات" data-en="Experience: 7+ years">الخبرة: 7+ سنوات</span>
-                            </div>
-                        </div>
-                        <div class="teacher-bio" data-ar="مدرسة فيزياء متخصصة بخبرة واسعة في تدريس الفيزياء لجميع المستويات الدراسية. تمتلك أسلوباً مبسطاً في شرح المفاهيم الفيزيائية المعقدة، وتقدم دروس خصوصية وحلول تمارين بشرح مفصل. متخصصة في إعداد ملخصات دراسية وبرامج تعليمية مخصصة لمادة الفيزياء." data-en="Specialized physics teacher with extensive experience in teaching physics at all academic levels. Possesses a simplified approach to explaining complex physics concepts, provides private lessons and detailed exercise solutions. Specializes in preparing study summaries and custom educational programs for physics.">
-                            مدرسة فيزياء متخصصة بخبرة واسعة في تدريس الفيزياء لجميع المستويات الدراسية. تمتلك أسلوباً مبسطاً في شرح المفاهيم الفيزيائية المعقدة، وتقدم دروس خصوصية وحلول تمارين بشرح مفصل. متخصصة في إعداد ملخصات دراسية وبرامج تعليمية مخصصة لمادة الفيزياء.
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Teacher Card 3 - يمكن إضافة المزيد -->
-                <div class="teacher-card">
-                    <div class="teacher-header">
-                        <i class="fas fa-calculator"></i>
-                        <h3 data-ar="معلم رياضيات" data-en="Mathematics Teacher">معلم رياضيات</h3>
-                        <div class="title" data-ar="أ/عبدالله أحمد" data-en="Mr. Abdullah Ahmed">أ/عبدالله أحمد</div>
-                    </div>
-                    <div class="teacher-info">
-                        <div class="teacher-details">
-                            <div class="teacher-detail">
-                                <i class="fas fa-graduation-cap"></i>
-                                <span data-ar="التخصص: رياضيات" data-en="Specialization: Mathematics">التخصص: رياضيات</span>
-                            </div>
-                            <div class="teacher-detail">
-                                <i class="fas fa-user-graduate"></i>
-                                <span data-ar="المؤهل: ماجستير رياضيات" data-en="Qualification: Master's in Mathematics">المؤهل: ماجستير رياضيات</span>
-                            </div>
-                            <div class="teacher-detail">
-                                <i class="fas fa-briefcase"></i>
-                                <span data-ar="الخبرة: 8+ سنوات" data-en="Experience: 8+ years">الخبرة: 8+ سنوات</span>
-                            </div>
-                        </div>
-                        <div class="teacher-bio" data-ar="معلم رياضيات متخصص بخبرة في تدريس الرياضيات لجميع المراحل الدراسية. متخصص في تبسيط المفاهيم الرياضية المعقدة وجعلها سهلة الفهم. يقدم دروس خصوصية وحلول تمارين بإسلوب واضح ومنظم." data-en="Specialized mathematics teacher with experience in teaching mathematics at all academic levels. Specializes in simplifying complex mathematical concepts and making them easy to understand. Provides private lessons and exercise solutions in a clear and organized manner.">
-                            معلم رياضيات متخصص بخبرة في تدريس الرياضيات لجميع المراحل الدراسية. متخصص في تبسيط المفاهيم الرياضية المعقدة وجعلها سهلة الفهم. يقدم دروس خصوصية وحلول تمارين بإسلوب واضح ومنظم.
-                        </div>
-                    </div>
-                </div>
-          
-
-<!-- Teacher Card 4 - المهندس نظير محسن -->
-<div class="teacher-card">
-    <div class="teacher-header">
-        <i class="fas fa-network-wired"></i> <!-- أيقونة هندسة اتصالات -->
-        <h3 data-ar="مهندس اتصالات وشبكات" data-en="Communications and Networks Engineer">مهندس اتصالات وشبكات</h3>
-        <div class="title" data-ar="م. نظير محسن" data-en="Eng. Nazir Mohsen">م. نظير محسن</div>
-    </div>
-    <div class="teacher-info">
-        <div class="teacher-details">
-            <div class="teacher-detail">
-                <i class="fas fa-graduation-cap"></i>
-                <span data-ar="التخصص: هندسة اتصالات وشبكات" data-en="Specialization: Communications and Networks Engineering">التخصص: هندسة اتصالات وشبكات</span>
             </div>
-            <div class="teacher-detail">
-                <i class="fas fa-user-graduate"></i>
-                <span data-ar="المؤهل: بكالوريوس هندسة اتصالات وشبكات" data-en="Qualification: Bachelor's in Communications and Networks Engineering">المؤهل: بكالوريوس هندسة اتصالات وشبكات</span>
-            </div>
-            <div class="teacher-detail">
-                <i class="fas fa-briefcase"></i>
-                <span data-ar="الخبرة: 20+ سنة" data-en="Experience: 20+ years">الخبرة: 20+ سنة</span>
-            </div>
-            <div class="teacher-detail">
-                <i class="fas fa-award"></i>
-                <span data-ar="المستوى: مهني محترف" data-en="Level: Professional Expert">المستوى: مهني محترف</span>
-            </div>
-        </div>
-        <div class="teacher-bio" data-ar="مهندس اتصالات وشبكات محترف مع خبرة تزيد عن 20 عاماً في مجال هندسة الاتصالات وتصميم الشبكات. متخصص في تصميم وتنفيذ مشاريع البنية التحتية للشبكات، أنظمة الألياف البصرية، الشبكات اللاسلكية، وأنظمة الأمن السيبراني للشبكات. يتمتع بخبرة واسعة في تقديم استشارات تقنية وتدريب مهني في مجال هندسة الاتصالات." data-en="Professional communications and networks engineer with over 20 years of experience in telecommunications engineering and network design. Specializes in designing and implementing network infrastructure projects, fiber optic systems, wireless networks, and network cybersecurity systems. Has extensive experience in providing technical consultations and professional training in communications engineering.">
-            مهندس اتصالات وشبكات محترف مع خبرة تزيد عن 20 عاماً في مجال هندسة الاتصالات وتصميم الشبكات. متخصص في تصميم وتنفيذ مشاريع البنية التحتية للشبكات، أنظمة الألياف البصرية، الشبكات اللاسلكية، وأنظمة الأمن السيبراني للشبكات. يتمتع بخبرة واسعة في تقديم استشارات تقنية وتدريب مهني في مجال هندسة الاتصالات.
-        </div>
-    </div>
-</div>
-
-
-  </div>
         </div>
     </section>
+
+    <!-- جميع بطاقات المعلمين (مخفية - تستخدم للبيانات) -->
+    <div style="display: none;" id="all-teachers-data">
+        <!-- Teacher Card 1 -->
+        <div class="teacher-card">
+            <div class="teacher-header">
+                <i class="fas fa-user-tie"></i>
+                <h3 data-ar="المشرف العام" data-en="Supervisor">المشرف العام</h3>
+                <div class="title" data-ar="أ/محمد عثمان" data-en="Mr. Mohammed Othman">أ/محمد عثمان</div>
+            </div>
+            <div class="teacher-info">
+                <div class="teacher-details">
+                    <div class="teacher-detail">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span data-ar="التخصص: لغة إنجليزية وترجمة" data-en="Specialization: English and Translation">التخصص: لغة إنجليزية وترجمة</span>
+                    </div>
+                    <div class="teacher-detail">
+                        <i class="fas fa-user-graduate"></i>
+                        <span data-ar="المؤهل: بكالوريوس لغة إنجليزية" data-en="Qualification: Bachelor's in English">المؤهل: بكالوريوس لغة إنجليزية</span>
+                    </div>
+                    <div class="teacher-detail">
+                        <i class="fas fa-briefcase"></i>
+                        <span data-ar="الخبرة: 10+ سنوات" data-en="Experience: 10+ years">الخبرة: 10+ سنوات</span>
+                    </div>
+                </div>
+                <div class="teacher-bio" data-ar="معلم لغة إنجليزية ومترجم محترف ذو خبرة واسعة في تدريس اللغة الإنجليزية كلغة أجنبية والترجمة. حاصل على شهادة TEFL ومتخصص في إعداد المواد التعليمية وتصميم برامج تعليمية مخصصة." data-en="English teacher and professional translator with extensive experience in teaching English as a foreign language and translation. Holds a TEFL certificate and specializes in preparing educational materials and designing custom educational programs.">
+                    معلم لغة إنجليزية ومترجم محترف ذو خبرة واسعة في تدريس اللغة الإنجليزية كلغة أجنبية والترجمة. حاصل على شهادة TEFL ومتخصص في إعداد المواد التعليمية وتصميم برامج تعليمية مخصصة.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Teacher Card 2 -->
+        <div class="teacher-card">
+            <div class="teacher-header">
+                <i class="fas fa-atom"></i>
+                <h3 data-ar="مدرسة فيزياء" data-en="Physics Teacher">مدرسة فيزياء</h3>
+                <div class="title" data-ar="أ/أماني محمد" data-en="Ms. Amani Al-Thamari">أ/أماني محمد</div>
+            </div>
+            <div class="teacher-info">
+                <div class="teacher-details">
+                    <div class="teacher-detail">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span data-ar="التخصص: فيزياء" data-en="Specialization: Physics">التخصص: فيزياء</span>
+                    </div>
+                    <div class="teacher-detail">
+                        <i class="fas fa-user-graduate"></i>
+                        <span data-ar="المؤهل: بكالوريوس فيزياء" data-en="Qualification: Bachelor's in Physics">المؤهل: بكالوريوس فيزياء</span>
+                    </div>
+                    <div class="teacher-detail">
+                        <i class="fas fa-briefcase"></i>
+                        <span data-ar="الخبرة: 7+ سنوات" data-en="Experience: 7+ years">الخبرة: 7+ سنوات</span>
+                    </div>
+                </div>
+                <div class="teacher-bio" data-ar="مدرسة فيزياء متخصصة بخبرة واسعة في تدريس الفيزياء لجميع المستويات الدراسية. تمتلك أسلوباً مبسطاً في شرح المفاهيم الفيزيائية المعقدة، وتقدم دروس خصوصية وحلول تمارين بشرح مفصل. متخصصة في إعداد ملخصات دراسية وبرامج تعليمية مخصصة لمادة الفيزياء." data-en="Specialized physics teacher with extensive experience in teaching physics at all academic levels. Possesses a simplified approach to explaining complex physics concepts, provides private lessons and detailed exercise solutions. Specializes in preparing study summaries and custom educational programs for physics.">
+                    مدرسة فيزياء متخصصة بخبرة واسعة في تدريس الفيزياء لجميع المستويات الدراسية. تمتلك أسلوباً مبسطاً في شرح المفاهيم الفيزيائية المعقدة، وتقدم دروس خصوصية وحلول تمارين بشرح مفصل. متخصصة في إعداد ملخصات دراسية وبرامج تعليمية مخصصة لمادة الفيزياء.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Teacher Card 3 -->
+        <div class="teacher-card">
+            <div class="teacher-header">
+                <i class="fas fa-calculator"></i>
+                <h3 data-ar="معلم رياضيات" data-en="Mathematics Teacher">معلم رياضيات</h3>
+                <div class="title" data-ar="أ/عبدالله أحمد" data-en="Mr. Abdullah Ahmed">أ/عبدالله أحمد</div>
+            </div>
+            <div class="teacher-info">
+                <div class="teacher-details">
+                    <div class="teacher-detail">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span data-ar="التخصص: رياضيات" data-en="Specialization: Mathematics">التخصص: رياضيات</span>
+                    </div>
+                    <div class="teacher-detail">
+                        <i class="fas fa-user-graduate"></i>
+                        <span data-ar="المؤهل: ماجستير رياضيات" data-en="Qualification: Master's in Mathematics">المؤهل: ماجستير رياضيات</span>
+                    </div>
+                    <div class="teacher-detail">
+                        <i class="fas fa-briefcase"></i>
+                        <span data-ar="الخبرة: 8+ سنوات" data-en="Experience: 8+ years">الخبرة: 8+ سنوات</span>
+                    </div>
+                </div>
+                <div class="teacher-bio" data-ar="معلم رياضيات متخصص بخبرة في تدريس الرياضيات لجميع المراحل الدراسية. متخصص في تبسيط المفاهيم الرياضية المعقدة وجعلها سهلة الفهم. يقدم دروس خصوصية وحلول تمارين بإسلوب واضح ومنظم." data-en="Specialized mathematics teacher with experience in teaching mathematics at all academic levels. Specializes in simplifying complex mathematical concepts and making them easy to understand. Provides private lessons and exercise solutions in a clear and organized manner.">
+                    معلم رياضيات متخصص بخبرة في تدريس الرياضيات لجميع المراحل الدراسية. متخصص في تبسيط المفاهيم الرياضية المعقدة وجعلها سهلة الفهم. يقدم دروس خصوصية وحلول تمارين بإسلوب واضح ومنظم.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Teacher Card 4 - المهندس نظير محسن -->
+        <div class="teacher-card">
+            <div class="teacher-header">
+                <i class="fas fa-network-wired"></i>
+                <h3 data-ar="مهندس اتصالات وشبكات" data-en="Communications and Networks Engineer">مهندس اتصالات وشبكات</h3>
+                <div class="title" data-ar="م. نظير محسن" data-en="Eng. Nazir Mohsen">م. نظير محسن</div>
+            </div>
+            <div class="teacher-info">
+                <div class="teacher-details">
+                    <div class="teacher-detail">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span data-ar="التخصص: هندسة اتصالات وشبكات" data-en="Specialization: Communications and Networks Engineering">التخصص: هندسة اتصالات وشبكات</span>
+                    </div>
+                    <div class="teacher-detail">
+                        <i class="fas fa-user-graduate"></i>
+                        <span data-ar="المؤهل: بكالوريوس هندسة اتصالات وشبكات" data-en="Qualification: Bachelor's in Communications and Networks Engineering">المؤهل: بكالوريوس هندسة اتصالات وشبكات</span>
+                    </div>
+                    <div class="teacher-detail">
+                        <i class="fas fa-briefcase"></i>
+                        <span data-ar="الخبرة: 20+ سنة" data-en="Experience: 20+ years">الخبرة: 20+ سنة</span>
+                    </div>
+                    <div class="teacher-detail">
+                        <i class="fas fa-award"></i>
+                        <span data-ar="المستوى: مهني محترف" data-en="Level: Professional Expert">المستوى: مهني محترف</span>
+                    </div>
+                </div>
+                <div class="teacher-bio" data-ar="مهندس اتصالات وشبكات محترف مع خبرة تزيد عن 20 عاماً في مجال هندسة الاتصالات وتصميم الشبكات. متخصص في تصميم وتنفيذ مشاريع البنية التحتية للشبكات، أنظمة الألياف البصرية، الشبكات اللاسلكية، وأنظمة الأمن السيبراني للشبكات. يتمتع بخبرة واسعة في تقديم استشارات تقنية وتدريب مهني في مجال هندسة الاتصالات." data-en="Professional communications and networks engineer with over 20 years of experience in telecommunications engineering and network design. Specializes in designing and implementing network infrastructure projects, fiber optic systems, wireless networks, and network cybersecurity systems. Has extensive experience in providing technical consultations and professional training in communications engineering.">
+                    مهندس اتصالات وشبكات محترف مع خبرة تزيد عن 20 عاماً في مجال هندسة الاتصالات وتصميم الشبكات. متخصص في تصميم وتنفيذ مشاريع البنية التحتية للشبكات، أنظمة الألياف البصرية، الشبكات اللاسلكية، وأنظمة الأمن السيبراني للشبكات. يتمتع بخبرة واسعة في تقديم استشارات تقنية وتدريب مهني في مجال هندسة الاتصالات.
+                </div>
+            </div>
+        </div>
+    </div>
     
     <!-- Features Section -->
     <section class="features" id="features">
@@ -1047,6 +1218,9 @@
             
             // حفظ اللغة المفضلة
             localStorage.setItem('preferredLanguage', lang);
+            
+            // تحديث نص أزرار التقسيم
+            updatePaginationTexts();
         }
         
         // وظيفة تحديث النصوص
@@ -1149,7 +1323,198 @@
             }
         });
         
-        // تهيئة القائمة المتنقلة عند التحميل
+        // نظام التقسيم للصفحات للخدمات والمعلمين فقط
+        const sections = {
+            'services': {
+                containerId: 'services-container',
+                dataId: 'all-services-data',
+                prevBtnId: 'services-prev-btn',
+                nextBtnId: 'services-next-btn',
+                pageNumbersId: 'services-page-numbers',
+                itemsPerPage: 6,
+                currentPage: 1
+            },
+            'teachers': {
+                containerId: 'teachers-container',
+                dataId: 'all-teachers-data',
+                prevBtnId: 'teachers-prev-btn',
+                nextBtnId: 'teachers-next-btn',
+                pageNumbersId: 'teachers-page-numbers',
+                itemsPerPage: 3,
+                currentPage: 1
+            }
+        };
+        
+        // تهيئة الأقسام التي تحتاج تقسيم
+        function initializeSections() {
+            Object.keys(sections).forEach(sectionId => {
+                initializeSection(sectionId);
+                setupPaginationEvents(sectionId);
+            });
+        }
+        
+        // تهيئة قسم معين
+        function initializeSection(sectionId) {
+            const section = sections[sectionId];
+            const dataContainer = document.getElementById(section.dataId);
+            
+            if (!dataContainer) return;
+            
+            // جمع البيانات من الحاوية المخفية
+            const items = Array.from(dataContainer.children).map(item => item.outerHTML);
+            
+            // حفظ البيانات
+            section.data = items;
+            
+            // عرض الصفحة الأولى
+            displayPage(sectionId, 1);
+        }
+        
+        // عرض صفحة معينة لقسم معين
+        function displayPage(sectionId, page) {
+            const section = sections[sectionId];
+            section.currentPage = page;
+            
+            const container = document.getElementById(section.containerId);
+            const startIndex = (page - 1) * section.itemsPerPage;
+            const endIndex = startIndex + section.itemsPerPage;
+            
+            // عرض العناصر للصفحة الحالية فقط
+            container.innerHTML = '';
+            section.data.slice(startIndex, endIndex).forEach(html => {
+                container.innerHTML += html;
+            });
+            
+            // تحديث أزرار التنقل
+            updatePaginationButtons(sectionId);
+            
+            // إعادة ربط أحداث الاشتراك (للخدمات فقط)
+            if (sectionId === 'services') {
+                reattachSubscribeEvents();
+            }
+        }
+        
+        // إنشاء أرقام الصفحات لقسم معين
+        function createPagination(sectionId) {
+            const section = sections[sectionId];
+            const totalPages = Math.ceil(section.data.length / section.itemsPerPage);
+            const pageNumbersContainer = document.getElementById(section.pageNumbersId);
+            
+            if (!pageNumbersContainer) return;
+            
+            pageNumbersContainer.innerHTML = '';
+            
+            // إضافة زر للصفحة الأولى دائماً
+            addPageNumber(sectionId, 1, pageNumbersContainer);
+            
+            // حساب النطاق للعرض
+            let startPage = Math.max(2, section.currentPage - 2);
+            let endPage = Math.min(totalPages - 1, section.currentPage + 2);
+            
+            // إضافة النقاط إذا لزم الأمر
+            if (startPage > 2) {
+                pageNumbersContainer.innerHTML += '<span class="page-number dots">...</span>';
+            }
+            
+            // إضافة أرقام الصفحات في النطاق
+            for (let i = startPage; i <= endPage; i++) {
+                addPageNumber(sectionId, i, pageNumbersContainer);
+            }
+            
+            // إضافة النقاط إذا لزم الأمر
+            if (endPage < totalPages - 1) {
+                pageNumbersContainer.innerHTML += '<span class="page-number dots">...</span>';
+            }
+            
+            // إضافة زر للصفحة الأخيرة إذا كانت أكثر من صفحة
+            if (totalPages > 1) {
+                addPageNumber(sectionId, totalPages, pageNumbersContainer);
+            }
+        }
+        
+        // دالة مساعدة لإضافة رقم صفحة
+        function addPageNumber(sectionId, pageNumber, container) {
+            const section = sections[sectionId];
+            const pageElement = document.createElement('span');
+            pageElement.className = `page-number ${pageNumber === section.currentPage ? 'active' : ''}`;
+            pageElement.textContent = pageNumber;
+            pageElement.onclick = () => displayPage(sectionId, pageNumber);
+            container.appendChild(pageElement);
+        }
+        
+        // تحديث أزرار السابق والتالي لقسم معين
+        function updatePaginationButtons(sectionId) {
+            const section = sections[sectionId];
+            const totalPages = Math.ceil(section.data.length / section.itemsPerPage);
+            const prevBtn = document.getElementById(section.prevBtnId);
+            const nextBtn = document.getElementById(section.nextBtnId);
+            
+            // تحديث زر السابق
+            if (prevBtn) prevBtn.disabled = section.currentPage === 1;
+            
+            // تحديث زر التالي
+            if (nextBtn) nextBtn.disabled = section.currentPage === totalPages;
+            
+            // إعادة إنشاء أرقام الصفحات
+            createPagination(sectionId);
+        }
+        
+        // إعادة ربط أحداث الاشتراك بعد تغيير الصفحة
+        function reattachSubscribeEvents() {
+            document.querySelectorAll('.subscribe-btn').forEach(button => {
+                button.onclick = function() {
+                    const serviceTitle = this.closest('.service-content').querySelector('h3');
+                    const serviceAr = serviceTitle.getAttribute('data-ar') || serviceTitle.textContent;
+                    const serviceEn = serviceTitle.getAttribute('data-en') || serviceTitle.textContent;
+                    subscribeToService(serviceAr, serviceEn);
+                };
+            });
+        }
+        
+        // تهيئة أحداث أزرار التنقل لقسم معين
+        function setupPaginationEvents(sectionId) {
+            const section = sections[sectionId];
+            
+            const prevBtn = document.getElementById(section.prevBtnId);
+            const nextBtn = document.getElementById(section.nextBtnId);
+            
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    if (section.currentPage > 1) {
+                        displayPage(sectionId, section.currentPage - 1);
+                    }
+                });
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    const totalPages = Math.ceil(section.data.length / section.itemsPerPage);
+                    if (section.currentPage < totalPages) {
+                        displayPage(sectionId, section.currentPage + 1);
+                    }
+                });
+            }
+        }
+        
+        // تحديث نص أزرار التقسيم
+        function updatePaginationTexts() {
+            Object.keys(sections).forEach(sectionId => {
+                const section = sections[sectionId];
+                const isArabic = document.body.getAttribute('dir') === 'rtl';
+                const prevBtn = document.getElementById(section.prevBtnId);
+                const nextBtn = document.getElementById(section.nextBtnId);
+                
+                if (isArabic) {
+                    if (prevBtn) prevBtn.innerHTML = '<i class="fas fa-chevron-right"></i> السابق';
+                    if (nextBtn) nextBtn.innerHTML = 'التالي <i class="fas fa-chevron-left"></i>';
+                } else {
+                    if (prevBtn) prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i> Previous';
+                    if (nextBtn) nextBtn.innerHTML = 'Next <i class="fas fa-chevron-right"></i>';
+                }
+            });
+        }
+        
+        // تهيئة الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             if (window.innerWidth <= 768) {
                 document.getElementById('mainNav').style.display = 'none';
@@ -1162,6 +1527,18 @@
             // إضافة مستمعي الأحداث لأزرار اللغة
             document.getElementById('arabicBtn').addEventListener('click', () => switchLanguage('ar'));
             document.getElementById('englishBtn').addEventListener('click', () => switchLanguage('en'));
+            
+            // تهيئة نظام التقسيم للخدمات والمعلمين فقط
+            initializeSections();
+            
+            // مراقبة تغيير اللغة لتحديث نصوص التقسيم
+            const languageObserver = new MutationObserver(() => {
+                updatePaginationTexts();
+            });
+            languageObserver.observe(document.body, { 
+                attributes: true, 
+                attributeFilter: ['dir'] 
+            });
         });
     </script>
 </body>
