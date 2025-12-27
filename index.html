@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تعليم اللغة الإنجليزية والترجمة | خدمات احترافية</title>
+    <title id="page-title">تعليم اللغة الإنجليزية والترجمة | خدمات احترافية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -916,6 +916,21 @@
                 </button>
             </div>
         </div>
+        
+        <!-- Service Card 11 - كتابة المحتوى باللغتين العربية والإنجليزية -->
+        <div class="service-card">
+            <div class="service-icon">
+                <i class="fas fa-pen-nib"></i>
+            </div>
+            <div class="service-content">
+                <span class="service-tag" data-ar="كتابة محتوى" data-en="Content Writing">كتابة محتوى</span>
+                <h3 data-ar="كتابة المحتوى باللغتين العربية والإنجليزية" data-en="Content Writing in Arabic and English">كتابة المحتوى باللغتين العربية والإنجليزية</h3>
+                <p data-ar="نقدم خدمة كتابة المحتوى الإبداعي والمتميز باللغتين العربية والإنجليزية، لنساعدك في إيصال أفكارك ورسالتك باحترافية ووضوح. نصنع لك محتوى يجذب الانتباه ويلامس احتياجات جمهورك، سواء كان محتوى تسويقي، تعريفي، أو إعلاني." data-en="We provide creative and distinguished content writing services in both Arabic and English, to help you deliver your ideas and message professionally and clearly. We create content that attracts attention and meets your audience's needs, whether it's marketing, informative, or advertising content.">نقدم خدمة كتابة المحتوى الإبداعي والمتميز باللغتين العربية والإنجليزية، لنساعدك في إيصال أفكارك ورسالتك باحترافية ووضوح. نصنع لك محتوى يجذب الانتباه ويلامس احتياجات جمهورك، سواء كان محتوى تسويقي، تعريفي، أو إعلاني.</p>
+                <button class="subscribe-btn">
+                    <i class="fab fa-whatsapp"></i> <span data-ar="اشتراك في الخدمة" data-en="Subscribe to Service">اشتراك في الخدمة</span>
+                </button>
+            </div>
+        </div>
     </div>
     
     <!-- Teachers Section -->
@@ -1189,7 +1204,79 @@
     </footer>
     
     <script>
-        // وظيفة تبديل اللغة
+        // نظام الترجمة المتكامل
+        const translations = {
+            ar: {
+                // عنوان الصفحة
+                'page-title': 'تعليم اللغة الإنجليزية والترجمة | خدمات احترافية',
+                
+                // الرأس
+                'site-title': 'تعليم اللغة الإنجليزية والترجمة',
+                'supervisor-text': 'المشرف العام: أ/محمد عثمان - معلم لغة إنجليزية ومترجم',
+                
+                // القسم الرئيسي
+                'hero-title': 'خدمات تعليمية وترجمة احترافية',
+                'hero-description': 'نقدم لك خدمات تعليمية متكاملة أونلاين: دروس خصوصية لجميع المستويات، حلول تمارين بدقة وشرح مفصل، تصميم عروض PowerPoint احترافية، إعداد ملخصات دراسية جاهزة، إعداد سيرة ذاتية مميزة، كتابة Cover Letter احترافية للتقديم على الوظائف، إعداد مراسلات ورسائل إنجليزية رسمية، تنفيذ برامج تعليمية حسب الطلب.',
+                'language-notice': 'جميع الخدمات متاحة باللغتين العربية والإنجليزية',
+                
+                // عناوين الأقسام
+                'services-title': 'خدماتنا التعليمية',
+                'teachers-title': 'معلمونا المتخصصون',
+                'features-title': 'لماذا تختار خدماتنا؟',
+                'steps-title': '5 خطوات لتعلم أي مهارة بسرعة',
+                'about-services-title': 'عن الخدمات',
+                'our-services-title': 'خدماتنا',
+                'contact-title': 'اتصل بنا',
+                'copyright-text': 'جميع الحقوق محفوظة © 2023 - خدمات تعليم اللغة الإنجليزية والترجمة',
+                
+                // نصوص أخرى
+                'about-services-description': 'نقدم خدمات تعليمية وترجمة احترافية باللغتين العربية والإنجليزية، مصممة خصيصًا لتلبية احتياجات الطلاب والمهنيين.',
+                
+                // أزرار التقسيم
+                'prev-btn-text': 'السابق',
+                'next-btn-text': 'التالي',
+                
+                // أزرار الاشتراك
+                'subscribe-btn-text': 'اشتراك في الخدمة',
+                'booking-btn-text': 'تواصل للحجز'
+            },
+            en: {
+                // Page Title
+                'page-title': 'English Teaching and Translation | Professional Services',
+                
+                // Header
+                'site-title': 'English Teaching and Translation',
+                'supervisor-text': 'Supervisor: Mr. Mohammed Othman - English Teacher and Translator',
+                
+                // Hero Section
+                'hero-title': 'Professional Educational and Translation Services',
+                'hero-description': 'We offer comprehensive online educational services: Private lessons for all levels, accurate exercise solutions with detailed explanations, professional PowerPoint presentation design, ready study summaries, distinctive CV preparation, professional Cover Letter writing for job applications, preparation of official English correspondence and letters, implementation of custom educational programs.',
+                'language-notice': 'All services are available in both Arabic and English',
+                
+                // Section Titles
+                'services-title': 'Our Educational Services',
+                'teachers-title': 'Our Specialized Teachers',
+                'features-title': 'Why Choose Our Services?',
+                'steps-title': '5 Steps to Learn Any Skill Quickly',
+                'about-services-title': 'About Services',
+                'our-services-title': 'Our Services',
+                'contact-title': 'Contact Us',
+                'copyright-text': 'All rights reserved © 2023 - English Teaching and Translation Services',
+                
+                // Other Texts
+                'about-services-description': 'We provide professional educational and translation services in both Arabic and English, specifically designed to meet the needs of students and professionals.',
+                
+                // Pagination Buttons
+                'prev-btn-text': 'Previous',
+                'next-btn-text': 'Next',
+                
+                // Subscribe Buttons
+                'subscribe-btn-text': 'Subscribe to Service',
+                'booking-btn-text': 'Contact for Booking'
+            }
+        };
+
+        // وظيفة تبديل اللغة الشاملة
         function switchLanguage(lang) {
             const body = document.body;
             const html = document.documentElement;
@@ -1198,33 +1285,36 @@
                 body.setAttribute('dir', 'ltr');
                 html.setAttribute('lang', 'en');
                 
-                // تحديث الأزرار
+                // تحديث أزرار اللغة
                 document.getElementById('arabicBtn').classList.remove('active');
                 document.getElementById('englishBtn').classList.add('active');
-                
-                // تحديث النصوص
-                updateTexts('en');
             } else {
                 body.setAttribute('dir', 'rtl');
                 html.setAttribute('lang', 'ar');
                 
-                // تحديث الأزرار
+                // تحديث أزرار اللغة
                 document.getElementById('arabicBtn').classList.add('active');
                 document.getElementById('englishBtn').classList.remove('active');
-                
-                // تحديث النصوص
-                updateTexts('ar');
             }
+            
+            // تحديث جميع النصوص في الصفحة
+            updateAllTexts(lang);
+            
+            // تحديث أزرار التقسيم
+            updatePaginationButtonsText(lang);
+            
+            // تحديث أزرار الاشتراك
+            updateSubscribeButtonsText(lang);
+            
+            // تحديث عنوان الصفحة
+            document.getElementById('page-title').textContent = translations[lang]['page-title'];
             
             // حفظ اللغة المفضلة
             localStorage.setItem('preferredLanguage', lang);
-            
-            // تحديث نص أزرار التقسيم
-            updatePaginationTexts();
         }
-        
-        // وظيفة تحديث النصوص
-        function updateTexts(lang) {
+
+        // تحديث جميع النصوص في الصفحة
+        function updateAllTexts(lang) {
             // تحديث النصوص التي لها data attributes
             const elements = document.querySelectorAll('[data-ar], [data-en]');
             elements.forEach(element => {
@@ -1236,50 +1326,77 @@
             });
             
             // تحديث النصوص الخاصة
-            const translations = {
-                ar: {
-                    'site-title': 'تعليم اللغة الإنجليزية والترجمة',
-                    'supervisor-text': 'المشرف العام: أ/محمد عثمان - معلم لغة إنجليزية ومترجم',
-                    'hero-title': 'خدمات تعليمية وترجمة احترافية',
-                    'hero-description': 'نقدم لك خدمات تعليمية متكاملة أونلاين: دروس خصوصية لجميع المستويات، حلول تمارين بدقة وشرح مفصل، تصميم عروض PowerPoint احترافية، إعداد ملخصات دراسية جاهزة، إعداد سيرة ذاتية مميزة، كتابة Cover Letter احترافية للتقديم على الوظائف، إعداد مراسلات ورسائل إنجليزية رسمية، تنفيذ برامج تعليمية حسب الطلب.',
-                    'language-notice': 'جميع الخدمات متاحة باللغتين العربية والإنجليزية',
-                    'services-title': 'خدماتنا التعليمية',
-                    'teachers-title': 'معلمونا المتخصصون',
-                    'features-title': 'لماذا تختار خدماتنا؟',
-                    'steps-title': '5 خطوات لتعلم أي مهارة بسرعة',
-                    'about-services-title': 'عن الخدمات',
-                    'about-services-description': 'نقدم خدمات تعليمية وترجمة احترافية باللغتين العربية والإنجليزية، مصممة خصيصًا لتلبية احتياجات الطلاب والمهنيين.',
-                    'our-services-title': 'خدماتنا',
-                    'contact-title': 'اتصل بنا',
-                    'copyright-text': 'جميع الحقوق محفوظة © 2023 - خدمات تعليم اللغة الإنجليزية والترجمة'
-                },
-                en: {
-                    'site-title': 'English Teaching and Translation',
-                    'supervisor-text': 'Supervisor: Mr. Mohammed Othman - English Teacher and Translator',
-                    'hero-title': 'Professional Educational and Translation Services',
-                    'hero-description': 'We offer comprehensive online educational services: Private lessons for all levels, accurate exercise solutions with detailed explanations, professional PowerPoint presentation design, ready study summaries, distinctive CV preparation, professional Cover Letter writing for job applications, preparation of official English correspondence and letters, implementation of custom educational programs.',
-                    'language-notice': 'All services are available in both Arabic and English',
-                    'services-title': 'Our Educational Services',
-                    'teachers-title': 'Our Specialized Teachers',
-                    'features-title': 'Why Choose Our Services?',
-                    'steps-title': '5 Steps to Learn Any Skill Quickly',
-                    'about-services-title': 'About Services',
-                    'about-services-description': 'We provide professional educational and translation services in both Arabic and English, specifically designed to meet the needs of students and professionals.',
-                    'our-services-title': 'Our Services',
-                    'contact-title': 'Contact Us',
-                    'copyright-text': 'All rights reserved © 2023 - English Teaching and Translation Services'
-                }
-            };
+            const textKeys = [
+                'site-title', 'supervisor-text', 'hero-title', 'hero-description',
+                'language-notice', 'services-title', 'teachers-title', 'features-title',
+                'steps-title', 'about-services-title', 'about-services-description',
+                'our-services-title', 'contact-title', 'copyright-text'
+            ];
             
-            // تحديث النصوص باستخدام الـ IDs
-            Object.keys(translations[lang]).forEach(key => {
+            textKeys.forEach(key => {
                 const element = document.getElementById(key);
-                if (element) {
+                if (element && translations[lang][key]) {
                     element.textContent = translations[lang][key];
                 }
             });
         }
-        
+
+        // تحديث نصوص أزرار التقسيم
+        function updatePaginationButtonsText(lang) {
+            const prevButtons = document.querySelectorAll('.pagination-btn span[data-ar]');
+            const nextButtons = document.querySelectorAll('.pagination-btn span[data-en]');
+            
+            prevButtons.forEach(btn => {
+                btn.textContent = translations[lang]['prev-btn-text'];
+            });
+            
+            nextButtons.forEach(btn => {
+                btn.textContent = translations[lang]['next-btn-text'];
+            });
+            
+            // تحديث الأسهم في أزرار التقسيم
+            const paginationButtons = document.querySelectorAll('.pagination-btn');
+            paginationButtons.forEach(btn => {
+                const isArabic = lang === 'ar';
+                const prevIcon = btn.querySelector('.fa-chevron-right');
+                const nextIcon = btn.querySelector('.fa-chevron-left');
+                
+                if (isArabic) {
+                    if (btn.id.includes('prev')) {
+                        btn.innerHTML = `<i class="fas fa-chevron-right"></i> ${translations[lang]['prev-btn-text']}`;
+                    } else if (btn.id.includes('next')) {
+                        btn.innerHTML = `${translations[lang]['next-btn-text']} <i class="fas fa-chevron-left"></i>`;
+                    }
+                } else {
+                    if (btn.id.includes('prev')) {
+                        btn.innerHTML = `<i class="fas fa-chevron-left"></i> ${translations[lang]['prev-btn-text']}`;
+                    } else if (btn.id.includes('next')) {
+                        btn.innerHTML = `${translations[lang]['next-btn-text']} <i class="fas fa-chevron-right"></i>`;
+                    }
+                }
+            });
+        }
+
+        // تحديث نصوص أزرار الاشتراك
+        function updateSubscribeButtonsText(lang) {
+            const subscribeButtons = document.querySelectorAll('.subscribe-btn span');
+            subscribeButtons.forEach(btn => {
+                if (btn.closest('.service-content')) {
+                    const serviceTitle = btn.closest('.service-content').querySelector('h3');
+                    const serviceAr = serviceTitle.getAttribute('data-ar');
+                    const serviceEn = serviceTitle.getAttribute('data-en');
+                    
+                    // تحديد نوع الزر (اشتراك عادي أو حجز)
+                    if (serviceAr && serviceAr.includes('استشارات هندسة') || 
+                        serviceEn && serviceEn.includes('Engineering Consultations')) {
+                        btn.textContent = translations[lang]['booking-btn-text'];
+                    } else {
+                        btn.textContent = translations[lang]['subscribe-btn-text'];
+                    }
+                }
+            });
+        }
+
         // وظيفة الاشتراك عبر واتساب
         function subscribeToService(serviceAr, serviceEn) {
             const phoneNumber = "+967772551220";
@@ -1388,10 +1505,8 @@
             // تحديث أزرار التنقل
             updatePaginationButtons(sectionId);
             
-            // إعادة ربط أحداث الاشتراك (للخدمات فقط)
-            if (sectionId === 'services') {
-                reattachSubscribeEvents();
-            }
+            // إعادة ربط أحداث الاشتراك
+            reattachSubscribeEvents();
         }
         
         // إنشاء أرقام الصفحات لقسم معين
@@ -1496,24 +1611,6 @@
             }
         }
         
-        // تحديث نص أزرار التقسيم
-        function updatePaginationTexts() {
-            Object.keys(sections).forEach(sectionId => {
-                const section = sections[sectionId];
-                const isArabic = document.body.getAttribute('dir') === 'rtl';
-                const prevBtn = document.getElementById(section.prevBtnId);
-                const nextBtn = document.getElementById(section.nextBtnId);
-                
-                if (isArabic) {
-                    if (prevBtn) prevBtn.innerHTML = '<i class="fas fa-chevron-right"></i> السابق';
-                    if (nextBtn) nextBtn.innerHTML = 'التالي <i class="fas fa-chevron-left"></i>';
-                } else {
-                    if (prevBtn) prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i> Previous';
-                    if (nextBtn) nextBtn.innerHTML = 'Next <i class="fas fa-chevron-right"></i>';
-                }
-            });
-        }
-        
         // تهيئة الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             if (window.innerWidth <= 768) {
@@ -1530,15 +1627,6 @@
             
             // تهيئة نظام التقسيم للخدمات والمعلمين فقط
             initializeSections();
-            
-            // مراقبة تغيير اللغة لتحديث نصوص التقسيم
-            const languageObserver = new MutationObserver(() => {
-                updatePaginationTexts();
-            });
-            languageObserver.observe(document.body, { 
-                attributes: true, 
-                attributeFilter: ['dir'] 
-            });
         });
     </script>
 </body>
